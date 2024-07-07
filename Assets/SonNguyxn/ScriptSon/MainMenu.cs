@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.Video;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsCanvas;
     public GameObject mainMenuCanvas;// Gán Canvas "Settings" vào đây
     public Slider volumeSlider; // Gán trong Inspector
+    public VideoPlayer videoPlayer;
     public AudioSource audioSource;
     public Material imageMaterial;
     public GameObject quitCanvas;
@@ -21,8 +22,9 @@ public class MainMenu : MonoBehaviour
     private bool inVolumeCanvas = false;
     private bool inTutorialCanvas = false;
     private bool inLanguageCanvas = false;
-    public void LoadGame()
+    public void PlayIntro()
     {
+        // Chuyển đến Scene intro
         SceneManager.LoadScene("StoryGame");
     }
     public void LoadResume()
@@ -43,6 +45,7 @@ public class MainMenu : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
         quitCanvas.SetActive(false);
         canvasVolume.SetActive(false);
+        videoPlayer = GetComponent<VideoPlayer>();
     }
     void Update()
     {

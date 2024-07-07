@@ -4452,6 +4452,7 @@ MonoBehaviour:
   settingsCanvas: {fileID: 1572346173}
   mainMenuCanvas: {fileID: 608346250}
   volumeSlider: {fileID: 1829344939}
+  videoPlayer: {fileID: 0}
   audioSource: {fileID: 1470779297}
   imageMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   quitCanvas: {fileID: 1663072325}
@@ -4695,7 +4696,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1166964407}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_MethodName: PlayIntro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
