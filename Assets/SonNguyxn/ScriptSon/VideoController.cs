@@ -7,7 +7,7 @@ using UnityEngine.Video;
 public class VideoController : MonoBehaviour
 {
     public string introSceneName = "StoryScene"; // Tên của Scene intro
-    public string nextSceneName = "GameScene"; // Tên của Scene tiếp theo sau intro
+    public string nextSceneName = "Xuan"; // Tên của Scene tiếp theo sau intro
     public VideoPlayer videoPlayer;
 
     private void Start()
