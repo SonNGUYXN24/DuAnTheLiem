@@ -13,8 +13,8 @@ TagManager:
   - Platform
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Platform
+  - name: Player
     uniqueID: 1330449249
+    locked: 0
+  - name: Platform
+    uniqueID: 187395875
+    locked: 0
+  - name: Ground
+    uniqueID: 2949137665
     locked: 0
