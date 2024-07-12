@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sword
   - Platform
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2949137665
+    locked: 0
+  - name: UI
+    uniqueID: 2280387201
     locked: 0
