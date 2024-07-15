@@ -13,8 +13,6 @@ public class KiemSonController : MonoBehaviour
 
     private void Update()
     {
-        InfoKiem();
-
         // Tắt canvas khi người dùng nhấn phím "ESC"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -30,11 +28,12 @@ public class KiemSonController : MonoBehaviour
     public void ShowInfoKiem1()
     {
         kiem1Canvas.SetActive(true);
+        InfoKiem();
     }
     public void InfoKiem()
     {
         // Cập nhật giá trị Damage của Player
-        statusPlayer.playerDamage = 200; // Giá trị Damage từ KiemSonController
+        statusPlayer.kiemDamage = 100; // Giá trị Damage từ KiemSonController
         statusPlayer.UpdateUI(); // Cập nhật giao diện
     }
 }

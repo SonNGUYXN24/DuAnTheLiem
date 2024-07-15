@@ -16,9 +16,12 @@ public class StatusPlayer : MonoBehaviour
     public Animator anim;
     private int maxHp = 100; // Máu tối đa
     private int maxStamina = 100; // Stamina tối đa
-    public int playerDamage = 200; // Giá trị Damage của Player
+    public int kiemDamage; // Giá trị Damage của Kiem
+    public int cungDamage; // Giá trị Damage của Kiem
     private int currentHp; // Máu hiện tại
     private int currentStamina; // Stamina hiện tại
+    private int currentDamage; // Damage hiện tại
+    private int currentArmor; // Armor hiện tại
     private int baseDamage = 100; // Damage cơ bản
     private int baseArmor = 100; // Armor cơ bản
     private int baseMoney = 100; // Money cơ bản
@@ -29,6 +32,8 @@ public class StatusPlayer : MonoBehaviour
     {
         currentHp = maxHp;
         currentStamina = maxStamina;
+        currentDamage = baseDamage;
+        currentArmor = baseArmor;
         UpdateUI();
         anim = GetComponent<Animator>();
     }
@@ -86,8 +91,8 @@ public class StatusPlayer : MonoBehaviour
         staminaSlider.value = (float)currentStamina / maxStamina;
         hpText.text = $"{currentHp}/{maxHp}";
         staminaText.text = $"{currentStamina}/{maxStamina}";
-        damageText.text = $"Damage: {baseDamage + playerDamage}"; // Cộng dồn với Damage của Player
-        armorText.text = $"Armor: {baseArmor}"; // Có thể cộng dồn với các vật phẩm khác
+        damageText.text = $"Damage: {currentDamage + kiemDamage + cungDamage}"; // Cộng dồn với Damage của Player
+        armorText.text = $"Armor: {currentArmor}"; // Có thể cộng dồn với các vật phẩm khác
         moneyCount.text = $"{baseMoney}";
     }
 }

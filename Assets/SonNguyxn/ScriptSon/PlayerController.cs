@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpSpeed = 13f;
-    [SerializeField] private float attackCooldown = 0.5f; // Thời gian cooldown giữa các lần tấn công
+    [SerializeField] private float attackCooldown = 0f; // Thời gian cooldown giữa các lần tấn công
     [SerializeField] private float currentCooldown = 0f; // Thời gian cooldown hiện tại
 
     public float dodgeSpeed = 4f;
@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
         Move();
         JumpAndCheckGround();
         Dodge();
+        Block();
+        Attack();
     }
 
     public void Move()
@@ -93,10 +95,12 @@ public class PlayerController : MonoBehaviour
         {
             // Người chơi nhấn phím F và không đang trong trạng thái tấn công
             // và đã qua thời gian cooldown
+            // Tạo một số ngẫu nhiên để chọn animation tấn công
+            int randomAttack = UnityEngine.Random.Range(1, 4); // Chọn từ 1 đến 3
 
-            // Kích hoạt trigger IsAttacking
-            anim.SetTrigger("IsAttacking");
-
+            // Kích hoạt trigger tấn công ngẫu nhiên (Attack1, Attack2, Attack3)
+            anim.SetBool($"Attack{randomAttack}", true);
+            anim.SetBool("IsStaying", false);
             // Kích hoạt BoxCollider2D của thanh kiếm
             swordCollider.enabled = true;
 
@@ -109,12 +113,17 @@ public class PlayerController : MonoBehaviour
         {
             // Người chơi không nhấn phím F hoặc đang trong trạng thái tấn công
             // hoặc chưa qua thời gian cooldown
-            anim.ResetTrigger("IsAttacking"); // Đặt lại trigger IsAttacking
+            // Tạo một số ngẫu nhiên để chọn animation tấn công
+            // Kích hoạt trigger tấn công ngẫu nhiên (Attack1, Attack2, Attack3)
+            anim.SetBool($"Attack1", false);
+            anim.SetBool($"Attack2", false);
+            anim.SetBool($"Attack3", false);
+            //anim.ResetTrigger("IsAttacking"); // Đặt lại trigger IsAttacking
             isAttacking = false;
             // Vô hiệu hóa BoxCollider2D của thanh kiếm
             swordCollider.enabled = false;
             // Kích hoạt trigger IsStaying
-            anim.SetTrigger("IsStaying");
+            anim.SetBool("IsStaying", true);
         }
 
         // Giảm thời gian cooldown
