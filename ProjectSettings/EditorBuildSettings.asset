@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GPhong-Xuan/Xuan.unity
     guid: 4c971ee202d4ddd4c9089f34ed3eff2b
+  - enabled: 1
+    path: Assets/Hoanghon-Ha/Ha.unity
+    guid: f1710366b961da848a5af562082f2cf8
   m_configObjects: {}

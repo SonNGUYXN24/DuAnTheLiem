@@ -11,6 +11,9 @@ TagManager:
   - NPCSales
   - KnifeEnemy
   - Goblin
+  - DiamondGr
+  - DiamondPurle
+  - Coins
   layers:
   - Default
   - TransparentFX
@@ -48,7 +51,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: BackGround
     uniqueID: 1330449249
     locked: 0
   - name: Platform
@@ -57,6 +60,9 @@ TagManager:
   - name: Ground
     uniqueID: 2949137665
     locked: 0
-  - name: UI
+  - name: Player
     uniqueID: 2280387201
+    locked: 0
+  - name: UI
+    uniqueID: 4020569357
     locked: 0

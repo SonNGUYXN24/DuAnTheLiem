@@ -167,5 +167,21 @@ public class StatusPlayer : MonoBehaviour
             currentHp -= 20;
             UpdateUI();
         }
+        if (other.gameObject.CompareTag("DiamondGr"))
+        {
+            currentdiamondG += 1;
+            UpdateUI();
+        }
+        if (other.gameObject.CompareTag("DiamondPurle"))
+        {
+            currentdiamondP += 1;
+            UpdateUI();
+        }
+        if (other.gameObject.CompareTag("DiamondGr"))
+        {
+            currentCoins += 1;
+            UpdateUI();
+        }
     }
+
 }

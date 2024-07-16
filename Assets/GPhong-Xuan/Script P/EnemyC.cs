@@ -122,6 +122,5 @@ public class EnemyC : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
     }
 }

@@ -6,7 +6,7 @@ public class FireBall : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemies"))
+        if (other.CompareTag("Goblin"))
         {
             // Nếu va chạm với tag "Enemies", hủy bỏ đối tượng FireBall
             Destroy(gameObject);

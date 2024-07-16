@@ -59,7 +59,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2014580095
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &6422884426447720899
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -448,9 +448,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingLayerID: 187395875
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: c1cdd26cc09ad224884556bc4d8296ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -569,7 +569,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRangeAttack: 2.5
   detectionRange: 7
-  Player: {fileID: 5244959567782748009, guid: 57ec353c3d46e00449388cbdeddd4233, type: 3}
+  statusPlayer: {fileID: 0}
+  Player: {fileID: 0}
   healthSlider: {fileID: 3902118291139704951}
-  Knifedamage: {fileID: 2089558520652994741}
+  health: 1000
+  currentHPEnemy: 0
+  maxHP: 1000
+  Knifedamage: {fileID: 0}
   hitbox: {fileID: 8993211448742332560, guid: f7227ec09f13c1d4985625e6d82ba1c4, type: 3}
