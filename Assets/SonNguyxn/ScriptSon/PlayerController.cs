@@ -10,9 +10,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpSpeed = 13f;
-    [SerializeField] private float attackCooldown = 0f; // Thời gian cooldown giữa các lần tấn công
-    [SerializeField] private float currentCooldown = 0f; // Thời gian cooldown hiện tại
-
     public float dodgeSpeed = 4f;
     public float dodgeDirection = 0.5f;
     private float dodgeTime;
@@ -91,7 +88,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-        if (Input.GetKey(KeyCode.F) && !isAttacking && currentCooldown <= 0f)
+        if (Input.GetKey(KeyCode.F))
         {
             // Người chơi nhấn phím F và không đang trong trạng thái tấn công
             // và đã qua thời gian cooldown
@@ -103,9 +100,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsStaying", false);
             // Kích hoạt BoxCollider2D của thanh kiếm
             swordCollider.enabled = true;
-
-            // Gán thời gian cooldown
-            currentCooldown = attackCooldown;
             isAttacking = true;
 
         }
@@ -125,9 +119,6 @@ public class PlayerController : MonoBehaviour
             // Kích hoạt trigger IsStaying
             anim.SetBool("IsStaying", true);
         }
-
-        // Giảm thời gian cooldown
-        currentCooldown -= Time.deltaTime;
     }
     public void Block()
     {
