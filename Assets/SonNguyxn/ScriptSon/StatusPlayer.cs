@@ -32,9 +32,9 @@ public class StatusPlayer : MonoBehaviour
     public int aoGiapLuaStamina;
     public int aoGiapLuaArmor;
     public int currentMoney;
-    private int currentHp; // Máu hiện tại
+    public int currentHp; // Máu hiện tại
     private int currentStamina; // Stamina hiện tại
-    private int currentDamage; // Damage hiện tại
+    public int currentDamage; // Damage hiện tại
     private int currentArmor; // Armor hiện tại
     private int baseDamage = 100; // Damage cơ bản
     private int baseArmor = 100; // Armor cơ bản
@@ -159,5 +159,13 @@ public class StatusPlayer : MonoBehaviour
         diamondGText.text = $"{currentdiamondG}";
         diamondPText.text = $"{currentdiamondP}";
         bloodText.text = $"{currentBloods}";
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("KnifeEnemy"))
+        {
+            currentHp -= 20;
+            UpdateUI();
+        }
     }
 }

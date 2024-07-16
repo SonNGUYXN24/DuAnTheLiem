@@ -9,6 +9,7 @@ public class EnemyC : MonoBehaviour
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
     public float detectionRange = 7f;  // Phạm vi phát hiện người chơi
     private float stopRange=0.5f;
+    public StatusPlayer statusPlayer;
     public Transform Player;//follow player
 
     private float TimeAttackRate = 2f;
@@ -17,8 +18,9 @@ public class EnemyC : MonoBehaviour
     private bool right;
 
     public Slider healthSlider;//slider hp boss
-    private int health;
-
+    public int health;
+    public int currentHPEnemy;
+    public int maxHP;
     Animator animator;
     Rigidbody2D rb;
 
@@ -29,11 +31,13 @@ public class EnemyC : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        health = 100;
-        healthSlider.maxValue = health;
-
+        currentHPEnemy = health;
+        UpdateHP();
     }
-
+    public void UpdateHP()
+    {
+        healthSlider.value = (float)currentHPEnemy / maxHP;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -107,13 +111,13 @@ public class EnemyC : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Sword"))
         {
-            health -= 90;
-            healthSlider.value = health;
-            if (health < 0)
+            currentHPEnemy -= statusPlayer.currentDamage;
+            UpdateHP();
+            if (currentHPEnemy <= 0)
             {
                 Destroy(gameObject);
             }

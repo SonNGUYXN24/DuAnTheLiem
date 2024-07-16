@@ -10,6 +10,7 @@ TagManager:
   - Block
   - NPCSales
   - KnifeEnemy
+  - Goblin
   layers:
   - Default
   - TransparentFX
