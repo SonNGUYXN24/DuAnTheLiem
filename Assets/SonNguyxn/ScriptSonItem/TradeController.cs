@@ -17,34 +17,42 @@ public class TradeController : MonoBehaviour
     private int coins = 0;
     void Start()
     {
-        moneyPlayer = statusPlayer.currentMoney;  
+        moneyPlayer = statusPlayer.currentMoney;
+        moneyText.text = $"{statusPlayer.currentMoney}";
+        greenDiamondText.text = $"{statusPlayer.currentdiamondG}";
+        purpleDiamondText.text = $"{statusPlayer.currentdiamondP}";
+        coinsText.text = $"{statusPlayer.currentCoins}";
     }
     void Update()
     {
         // Cập nhật thông tin trên giao diện
         moneyText.text = $"{statusPlayer.currentMoney}";
-        greenDiamondText.text = $"{greenDiamonds}";
-        purpleDiamondText.text = $"{purpleDiamonds}";
-        coinsText.text = $"{coins}";
+        greenDiamondText.text = $"{statusPlayer.currentdiamondG}";
+        purpleDiamondText.text = $"{statusPlayer.currentdiamondP}";
+        coinsText.text = $"{statusPlayer.currentCoins}";
     }
 
     public void TradeGreenDiamond()
     {
-        if (greenDiamonds > 0)
+        if (statusPlayer.currentdiamondG > 0)
         {
-            moneyPlayer += 1000; // Giả sử mỗi Diamond xanh trao đổi được 100$
-            greenDiamonds -= 1; // Trừ đi một Diamond xanh
+            statusPlayer.currentMoney += 1000; // Giả sử mỗi Diamond xanh trao đổi được 100$
+            statusPlayer.currentdiamondG -= 1; // Trừ đi một Diamond xanh
             Update();
+        }
+        else
+        {
+            warning2Canvas.SetActive(true);
         }
         // Có thể thêm xử lý khi không có đủ Diamond xanh ở đây
     }
 
     public void TradePurpleDiamond()
     {
-        if (purpleDiamonds > 0)
+        if (statusPlayer.currentdiamondP > 0)
         {
-            moneyPlayer += 700; // Giả sử mỗi Diamond tím trao đổi được 70$
-            purpleDiamonds -= 1; // Trừ đi một Diamond tím
+            statusPlayer.currentMoney += 700; // Giả sử mỗi Diamond tím trao đổi được 70$
+            statusPlayer.currentdiamondP -= 1; // Trừ đi một Diamond tím
             Update();
         }
         else
@@ -56,10 +64,10 @@ public class TradeController : MonoBehaviour
 
     public void TradeCoins()
     {
-        if (coins > 0)
+        if (statusPlayer.currentCoins > 0)
         {
-            moneyPlayer += 200; // Giả sử mỗi Coin trao đổi được 20$
-            coins -= 1; // Trừ đi một Coin
+            statusPlayer.currentMoney += 200; // Giả sử mỗi Coin trao đổi được 20$
+            statusPlayer.currentCoins -= 1; // Trừ đi một Coin
             Update();
         }
         else
