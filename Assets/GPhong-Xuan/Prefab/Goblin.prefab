@@ -569,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRangeAttack: 2.5
   detectionRange: 7
-  Player: {fileID: 0}
+  Player: {fileID: 5244959567782748009, guid: 57ec353c3d46e00449388cbdeddd4233, type: 3}
   healthSlider: {fileID: 3902118291139704951}
   Knifedamage: {fileID: 2089558520652994741}
   hitbox: {fileID: 8993211448742332560, guid: f7227ec09f13c1d4985625e6d82ba1c4, type: 3}
