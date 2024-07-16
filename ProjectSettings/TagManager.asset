@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Block
   - NPCSales
+  - KnifeEnemy
   layers:
   - Default
   - TransparentFX
