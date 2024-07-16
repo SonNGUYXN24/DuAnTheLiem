@@ -9,6 +9,14 @@ public class BuyController : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public StatusPlayer statusPlayer;
     public GameObject waringCanvas;
+    public GameObject kiem;
+    public GameObject cung;
+    public GameObject sliverArrow;
+    public GameObject helMet;
+    public GameObject khien;
+    public GameObject phiTieu;
+    public GameObject ringMagic;
+    public GameObject aoGiapLua;
     // Các biến giá tiền cho từng trang bị
     public int kiemCost = 1000;
     public int cungCost = 1500;
@@ -23,7 +31,7 @@ public class BuyController : MonoBehaviour
     // Gọi hàm này khi người chơi nhấn vào nút "Buy" của một trang bị
     void Update()
     {
-       
+        moneyText.text = $"{statusPlayer.currentMoney}";
     }
     public void BuyKiemItem(int itemCost)
     {
@@ -32,6 +40,7 @@ public class BuyController : MonoBehaviour
             kiemCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
+            kiem.SetActive(true);
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
         }
@@ -39,6 +48,7 @@ public class BuyController : MonoBehaviour
         {
             waringCanvas.SetActive(true);
         }
+        
     }
     public void BuyCungItem(int itemCost)
     {
@@ -46,6 +56,7 @@ public class BuyController : MonoBehaviour
         {
             cungCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
+            cung.SetActive(true);
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
@@ -61,6 +72,7 @@ public class BuyController : MonoBehaviour
         {
             sliverArCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
+            sliverArrow.SetActive(true);
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
@@ -77,6 +89,7 @@ public class BuyController : MonoBehaviour
             khienXinCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
+            khien.SetActive(true);
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
         }
@@ -92,6 +105,7 @@ public class BuyController : MonoBehaviour
             phiTieuCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
+            phiTieu.SetActive(true);
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
         }
@@ -106,6 +120,7 @@ public class BuyController : MonoBehaviour
         {
             aoGiapCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
+            aoGiapLua.SetActive(true);
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
@@ -137,6 +152,7 @@ public class BuyController : MonoBehaviour
             helmetCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
+            helMet.SetActive(true);
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();
         }

@@ -12,7 +12,9 @@ public class BloodController : MonoBehaviour
     // Hàm xử lý khi người chơi nhấn nút "Blood"
     public void OnBloodButtonClicked()
     {
-        statusPlayer.IncreaseHealth(20); // Cộng 20 máu
+        statusPlayer.IncreaseHealth(200); // Cộng 20 máu
+        statusPlayer.currentBloods -= 1;
+        statusPlayer.UpdateUI();
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class BloodController : MonoBehaviour
         timeSinceLastHeal += Time.deltaTime;
         if (timeSinceLastHeal >= healInterval)
         {
-            statusPlayer.Heal(1); // Hồi 1 máu
+            statusPlayer.Heal(2); // Hồi 1 máu
             timeSinceLastHeal = 0f;
         }
     }

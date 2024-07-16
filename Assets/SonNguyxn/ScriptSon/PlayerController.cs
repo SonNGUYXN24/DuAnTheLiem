@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D blockCollider; // Biến để tham chiếu đến BoxCollider2D của chặn đòn
 
     private bool isGrounded; // Kiểm tra xem người chơi có đang đứng trên mặt đất không
-
+    public GameObject fireballPrefab; // Prefab của quả cầu lửa
+    private float fireballSpeed = 2.20f; // Tốc độ bắn của quả cầu lửa
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -118,6 +119,20 @@ public class PlayerController : MonoBehaviour
             swordCollider.enabled = false;
             // Kích hoạt trigger IsStaying
             anim.SetBool("IsStaying", true);
+        }
+    }
+    public void SkillFireBall()
+    {
+        // Kiểm tra khi người chơi nhấn phím kích hoạt Skill 1
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            // Tạo ra quả cầu lửa
+            GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+            Rigidbody2D fireballRb = fireball.GetComponent<Rigidbody2D>();
+            fireballRb.velocity = new Vector2(fireballSpeed, 0f);
+
+            // Hủy bỏ quả cầu lửa sau 2 giây
+            Destroy(fireball, 2f);
         }
     }
     public void Block()
