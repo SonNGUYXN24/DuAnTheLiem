@@ -14,19 +14,22 @@ public class StatusPlayer : MonoBehaviour
     public TextMeshProUGUI staminaText; // TextMeshPro cho hiển thị Stamina
     public TextMeshProUGUI moneyCount; //TextMeshPro hiển thị Money của người chơi.
     public Animator anim;
-    private int maxHp = 100; // Máu tối đa
+    public int maxHp = 100; // Máu tối đa
     private int maxStamina = 100; // Stamina tối đa
     public int kiemDamage; // Giá trị Damage của Kiem
     public int cungDamage; // Giá trị Damage của Kiem
+    public int currentMoney;
     private int currentHp; // Máu hiện tại
     private int currentStamina; // Stamina hiện tại
     private int currentDamage; // Damage hiện tại
     private int currentArmor; // Armor hiện tại
     private int baseDamage = 100; // Damage cơ bản
     private int baseArmor = 100; // Armor cơ bản
-    private int baseMoney = 100; // Money cơ bản
+    public int baseMoney = 10000; // Money cơ bản
     private float staminaRegenRate = 1f; // Tốc độ hồi Stamina mỗi giây
     private float timeSinceLastStaminaRegen; // Thời gian kể từ lần hồi Stamina cuối cùng
+    public float timeSinceLastHeal;
+    private float healInterval = 2f; // Hồi máu sau mỗi 2 giây
     private bool canJump = true; // Cho phép nhảy hay không
     private void Start()
     {
@@ -34,6 +37,7 @@ public class StatusPlayer : MonoBehaviour
         currentStamina = maxStamina;
         currentDamage = baseDamage;
         currentArmor = baseArmor;
+        currentMoney = baseMoney;
         UpdateUI();
         anim = GetComponent<Animator>();
     }
@@ -60,7 +64,13 @@ public class StatusPlayer : MonoBehaviour
                 timeSinceLastStaminaRegen = 0f;
             }
         }
-
+        // Hồi máu theo thời gian thực
+        timeSinceLastHeal += Time.deltaTime;
+        if (timeSinceLastHeal >= healInterval)
+        {
+            Heal(1); // Hồi 1 máu
+            timeSinceLastHeal = 0f;
+        }
         // Kích hoạt animation IsDeathing khi HP về 0
         if (currentHp <= 0)
         {
@@ -75,7 +85,20 @@ public class StatusPlayer : MonoBehaviour
         currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         UpdateUI();
     }
-
+    // Hàm hồi máu
+    public void Heal(int amount)
+    {
+        currentHp += amount;
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        UpdateUI();
+    }
+    // Hàm cộng máu
+    public void IncreaseHealth(int amount)
+    {
+        currentHp += amount;
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        UpdateUI();
+    }
     // Hàm hồi Stamina
     private void RegenerateStamina()
     {
@@ -93,6 +116,6 @@ public class StatusPlayer : MonoBehaviour
         staminaText.text = $"{currentStamina}/{maxStamina}";
         damageText.text = $"Damage: {currentDamage + kiemDamage + cungDamage}"; // Cộng dồn với Damage của Player
         armorText.text = $"Armor: {currentArmor}"; // Có thể cộng dồn với các vật phẩm khác
-        moneyCount.text = $"{baseMoney}";
+        moneyCount.text = $"{currentMoney}";
     }
 }
