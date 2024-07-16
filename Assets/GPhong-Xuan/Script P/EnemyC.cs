@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EnemyC : MonoBehaviour
 {
@@ -14,13 +16,22 @@ public class EnemyC : MonoBehaviour
 
     private bool right;
 
+    public Slider healthSlider;//slider hp boss
+    private int health;
+
     Animator animator;
     Rigidbody2D rb;
+
+    public Transform Knifedamage;
+    public GameObject hitbox;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        
+        health = 100;
+        healthSlider.maxValue = health;
+
     }
 
     // Update is called once per frame
@@ -34,12 +45,29 @@ public class EnemyC : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
         if (distanceToPlayer < detectionRangeAttack)
         {
+
+            int attackType = Random.Range(0, 2);  // Random số nguyên từ 0 tới 2 (0 hoặc 2)
+
             timeAttack -= Time.deltaTime;
-            if (timeAttack <= 0)
+
+            if (attackType == 0)
             {
-                //animation tấn công
-                animator.SetTrigger("Attack1");
-                timeAttack = TimeAttackRate;
+
+                if (timeAttack <= 0)
+                {
+                    //animation tấn công
+                    animator.SetTrigger("Attack1");
+                    var oneSkill = Instantiate(hitbox, Knifedamage.position, Quaternion.identity);
+                    Destroy(oneSkill, 0.1f);
+                    timeAttack = TimeAttackRate;
+                }
+            }if (attackType == 1)
+            {
+                if (timeAttack <= 0)
+                {
+                    animator.SetTrigger("Attack2");
+                    timeAttack = TimeAttackRate;
+                }
             }
         }
     }
@@ -78,5 +106,18 @@ public class EnemyC : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            health -= 90;
+            healthSlider.value = health;
+            if (health < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
     }
 }
