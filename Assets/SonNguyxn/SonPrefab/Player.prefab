@@ -9167,7 +9167,7 @@ MonoBehaviour:
   audioSource: {fileID: 6416020881298878184}
   climbSpeed: 0
   blockCollider: {fileID: 3672617230852510529}
-  fireballPrefab: {fileID: 1837815242697265542, guid: 40243e63726599c43807330cebaa4307, type: 3}
+  fireballPrefab: {fileID: 108477544043595364, guid: bd5228b916a54f24d8b100e2af328b9e, type: 3}
   fireballSpeed: 25
 --- !u!114 &7119317602519469150
 MonoBehaviour:
@@ -9193,6 +9193,7 @@ MonoBehaviour:
   diamondPText: {fileID: 8018514962646482198}
   bloodText: {fileID: 2667373010374757617}
   anim: {fileID: 2623950038142655921}
+  gameOver: {fileID: 0}
   bloodButton: {fileID: 5738613794361353323}
   maxHp: 100
   kiemDamage: 0

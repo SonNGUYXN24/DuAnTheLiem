@@ -11,7 +11,7 @@ public class EnemyC : MonoBehaviour
     private float stopRange=0.5f;
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
-
+    public ParticleSystem fireBallHit;
     private float TimeAttackRate = 2f;
     private float timeAttack;
 
@@ -117,6 +117,7 @@ public class EnemyC : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword"))
         {
             currentHPEnemy -= statusPlayer.currentDamage;
+            
             UpdateHP();
             if (currentHPEnemy <= 0)
             {
@@ -126,7 +127,12 @@ public class EnemyC : MonoBehaviour
         if (collision.gameObject.CompareTag("FireBall"))
         {
             currentHPEnemy -= 50;
+            fireBallHit.Play();
             UpdateHP();
+            if (currentHPEnemy <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
