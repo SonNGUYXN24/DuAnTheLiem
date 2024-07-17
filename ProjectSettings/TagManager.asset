@@ -15,6 +15,7 @@ TagManager:
   - DiamondPurle
   - Coins
   - Climb
+  - FireBall
   layers:
   - Default
   - TransparentFX

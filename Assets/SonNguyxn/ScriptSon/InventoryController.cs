@@ -41,6 +41,7 @@ public class InventoryController : MonoBehaviour
         inStatus = true;
         inItems = false;
         inWeapon = false;
+        Debug.Log("Button Hoat Dong");
     }
 
     public void ShowItemCanvas()

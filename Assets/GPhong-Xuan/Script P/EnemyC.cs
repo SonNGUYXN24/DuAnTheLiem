@@ -43,6 +43,7 @@ public class EnemyC : MonoBehaviour
     {
         TimeAttack();
         followPlayer();
+        statusPlayer.UpdateUI();
     }
     void TimeAttack()
     {
@@ -121,6 +122,11 @@ public class EnemyC : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+        if (collision.gameObject.CompareTag("FireBall"))
+        {
+            currentHPEnemy -= 50;
+            UpdateHP();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
 
 public class StatusPlayer : MonoBehaviour
 {
@@ -156,19 +157,20 @@ public class StatusPlayer : MonoBehaviour
         staminaSlider.value = (float)currentStamina  / (maxStamina + aoGiapLuaStamina);
         hpText.text = $"{currentHp}/{maxHp + ringInfo + aoGiapLuaHp}";
         staminaText.text = $"{currentStamina}/{maxStamina + aoGiapLuaStamina}";
-        damageText.text = $"Damage: {currentDamage + kiemDamage + cungDamage + sliverArDamage + phiTieuInfo }"; // Cộng dồn với Damage của Player
-        armorText.text = $"Armor: {currentArmor + helmetInfo + + khienInfo + aoGiapLuaArmor}"; // Có thể cộng dồn với các vật phẩm khác
+        damageText.text = $"Damage: {currentDamage + (kiemDamage + cungDamage + sliverArDamage + phiTieuInfo) }"; // Cộng dồn với Damage của Player
+        armorText.text = $"Armor: {currentArmor + (helmetInfo + + khienInfo + aoGiapLuaArmor)}"; // Có thể cộng dồn với các vật phẩm khác
         moneyCount.text = $"{currentMoney}";
         coinstext.text = $"{currentCoins}";
         diamondGText.text = $"{currentdiamondG}";
         diamondPText.text = $"{currentdiamondP}";
         bloodText.text = $"{currentBloods}";
+        
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("KnifeEnemy"))
         {
-            currentHp -= 20;
+            currentHp -= 50;
             UpdateUI();
         }
         if (other.gameObject.CompareTag("DiamondGr"))

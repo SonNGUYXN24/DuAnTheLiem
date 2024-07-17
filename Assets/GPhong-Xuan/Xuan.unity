@@ -3087,7 +3087,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.04
+  orthographic size: 3.07
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3112,7 +3112,7 @@ Transform:
   m_GameObject: {fileID: 181915124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -456.9264, y: -2.4405932, z: -10}
+  m_LocalPosition: {x: -456.5968, y: -1.9481933, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66882,6 +66882,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1807094596908898195, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.98239136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807094596908898195, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8595998
+      objectReference: {fileID: 0}
     - target: {fileID: 2411059246138331353, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -66906,10 +66914,42 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 181915127}
+    - target: {fileID: 6259252913420901492, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 3.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: bloods
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 2057628776}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: baseMoney
+      value: 2000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: cungDamage
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: kiemDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: phiTieuInfo
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: damageAttack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: sliverArDamage
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -457.5792
@@ -66949,6 +66989,10 @@ PrefabInstance:
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625452825573061215, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_ScreenY
+      value: 0.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

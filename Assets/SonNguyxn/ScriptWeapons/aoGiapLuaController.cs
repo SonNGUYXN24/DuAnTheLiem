@@ -32,6 +32,7 @@ public class aoGiapLuaController : MonoBehaviour
         statusPlayer.aoGiapLuaHp = 20000; // Giá trị Damage từ CungSonController
         statusPlayer.aoGiapLuaStamina = 500;
         statusPlayer.aoGiapLuaArmor = 2000;
-        statusPlayer.UpdateUI(); // Cập nhật giao diện
+        statusPlayer.UpdateUI();
+        // Cập nhật giao diện
     }
 }
