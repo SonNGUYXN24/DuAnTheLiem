@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Hoanghon-Ha/Ha.unity
     guid: f1710366b961da848a5af562082f2cf8
+  - enabled: 1
+    path: Assets/Loivivu/Loi_muadong.unity
+    guid: d169f4303784d65488714edc6803c24e
   m_configObjects: {}

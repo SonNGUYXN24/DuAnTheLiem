@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip swordSound;
     public AudioClip skill1Sound;
     public AudioClip skill2Sound;*/
-
+    public int climbSpeed;
     public BoxCollider2D blockCollider; // Biến để tham chiếu đến BoxCollider2D của chặn đòn
-
+    private bool isClimbing = false; // Kiểm tra xem người chơi có đang leo hay không
     private bool isGrounded; // Kiểm tra xem người chơi có đang đứng trên mặt đất không
     public GameObject fireballPrefab; // Prefab của quả cầu lửa
     [SerializeField] private float fireballSpeed = 2.20f; // Tốc độ bắn của quả cầu lửa
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Dodge();
         Block();
         Attack();
-
+        Climb();
         SkillFireBall();
     }
 
@@ -66,7 +66,16 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsRunning", false); // Khi đứng yên, animation di chuyển là false
         }
     }
-
+    public void Climb()
+    {
+        // Kiểm tra nếu người chơi đang leo
+        if (isClimbing)
+        {
+            float verticalInput = Input.GetAxis("Vertical");
+            // Điều khiển người chơi lên hoặc xuống
+            rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbSpeed);
+        }
+    }
     public void Dodge()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
@@ -188,6 +197,24 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false; // Khi rời khỏi mặt đất, đánh dấu không đứng trên mặt đất
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Climb"))
+        {
+            // Người chơi chạm vào tag "Climb", cho phép leo
+            isClimbing = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Climb"))
+        {
+            // Người chơi không còn chạm vào tag "Climb", ngừng leo
+            isClimbing = false;
         }
     }
 }

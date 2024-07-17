@@ -18,6 +18,7 @@ public class StatusPlayer : MonoBehaviour
     public TextMeshProUGUI diamondPText;
     public TextMeshProUGUI bloodText;
     public Animator anim;
+    public GameObject gameOver;
     public GameObject bloodButton;
     public int maxHp = 100; // Máu tối đa
     private int maxStamina = 100; // Stamina tối đa
@@ -112,8 +113,11 @@ public class StatusPlayer : MonoBehaviour
         if (currentHp <= 0)
         {
             anim.SetBool("IsDeathing", true);
+            gameOver.SetActive(true);
+            // Tạm dừng game
+            Time.timeScale = 0f;
         }
-     
+        
     }
 
     // Hàm giảm Stamina

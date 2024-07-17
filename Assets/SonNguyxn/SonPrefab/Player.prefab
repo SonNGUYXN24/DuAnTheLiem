@@ -9165,6 +9165,7 @@ MonoBehaviour:
   anim: {fileID: 2623950038142655921}
   swordCollider: {fileID: 2796189458074594001}
   audioSource: {fileID: 6416020881298878184}
+  climbSpeed: 0
   blockCollider: {fileID: 3672617230852510529}
   fireballPrefab: {fileID: 1837815242697265542, guid: 40243e63726599c43807330cebaa4307, type: 3}
   fireballSpeed: 25
