@@ -12,9 +12,11 @@ public class EnemyC : MonoBehaviour
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
     public ParticleSystem fireBallHit;
+    public ParticleSystem bloodEffect;
+    public ParticleSystem swordEffect;
     private float TimeAttackRate = 2f;
     private float timeAttack;
-
+    private bool isDead = false; // Thêm biến để kiểm tra xem quái vật đã chết chưa
     private bool right;
 
     public Slider healthSlider;//slider hp boss
@@ -117,11 +119,11 @@ public class EnemyC : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword"))
         {
             currentHPEnemy -= statusPlayer.currentDamage;
-            
+            swordEffect.Play();
             UpdateHP();
-            if (currentHPEnemy <= 0)
+            if (currentHPEnemy <= 0 && !isDead)
             {
-                Destroy(gameObject);
+                StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
         if (collision.gameObject.CompareTag("FireBall"))
@@ -129,10 +131,24 @@ public class EnemyC : MonoBehaviour
             currentHPEnemy -= 50;
             fireBallHit.Play();
             UpdateHP();
-            if (currentHPEnemy <= 0)
+
+            if (currentHPEnemy <= 0 && !isDead)
             {
-                Destroy(gameObject);
+                StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+    }
+    private IEnumerator PlayBloodEffectAndDestroy()
+    {
+        isDead = true; // Đánh dấu quái vật đã chết
+
+        // Phát hiệu ứng bloodEffect
+        bloodEffect.Play();
+
+        // Đợi một khoảng thời gian (ví dụ: 0.1 giây)
+        yield return new WaitForSeconds(0.3f);
+
+        // Hủy đối tượng quái vật
+        Destroy(gameObject);
     }
 }

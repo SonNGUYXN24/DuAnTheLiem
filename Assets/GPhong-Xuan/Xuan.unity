@@ -987,6 +987,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
+    - target: {fileID: 2497126643765651302, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 5391179413402483900, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2030,6 +2034,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!198 &131139060 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1388346527614497521, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+  m_PrefabInstance: {fileID: 1383887007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &135871163
 GameObject:
   m_ObjectHideFlags: 0
@@ -65149,17 +65158,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 695715102}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
-      propertyPath: fireBallHit
+      propertyPath: swordEffect
       value: 
-      objectReference: {fileID: 1964881350}
+      objectReference: {fileID: 131139060}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
-    - target: {fileID: 1960445726572426604, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5391179413402483900, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -65170,7 +65175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16268921
+      value: -0.52
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -71820,17 +71825,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 676190231}
     m_Modifications:
-    - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.3886967
-      objectReference: {fileID: 0}
-    - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.3886967
-      objectReference: {fileID: 0}
-    - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.3886967
+    - target: {fileID: -885069098619747843, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71876,6 +71873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diamond_purple (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8545548439586006857, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71905,6 +71906,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
+    - target: {fileID: 2497126643765651302, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.012
+      objectReference: {fileID: 0}
     - target: {fileID: 5391179413402483900, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -71915,7 +71920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.440002
+      value: 12.93
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -130498,11 +130503,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!198 &1964881350 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5010914639129414688, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
-  m_PrefabInstance: {fileID: 1383887007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1965688025
 GameObject:
   m_ObjectHideFlags: 0
@@ -133935,6 +133935,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
+    - target: {fileID: 2497126643765651302, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.012
+      objectReference: {fileID: 0}
     - target: {fileID: 5391179413402483900, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -133945,7 +133949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.730011
+      value: 7.54
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.y
