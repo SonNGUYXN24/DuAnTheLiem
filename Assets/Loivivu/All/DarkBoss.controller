@@ -115,13 +115,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ismove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -196,13 +196,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5324287129001805279}
-    m_Position: {x: 50, y: 170, z: 0}
+    m_Position: {x: 60, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4919136636919791118}
     m_Position: {x: 0, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9008777807720726954}
-    m_Position: {x: 310, y: 150, z: 0}
+    m_Position: {x: 320, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 2665015179782071285}
@@ -210,7 +210,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -10, y: -50, z: 0}
-  m_EntryPosition: {x: 50, y: 270, z: 0}
+  m_EntryPosition: {x: 60, y: 230, z: 0}
   m_ExitPosition: {x: 250, y: 370, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -5324287129001805279}

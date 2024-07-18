@@ -26,6 +26,8 @@ public class Boss : MonoBehaviour
 
     public Transform Knifedamage;
     public GameObject hitbox;
+    public ParticleSystem deadEffect;
+    private bool isDead;
 
     void Start()
     {
@@ -50,12 +52,11 @@ public class Boss : MonoBehaviour
         if (distanceToPlayer < detectionRangeAttack)
         {
 
-            int attackType = Random.Range(0, 2);  // Random số nguyên từ 0 tới 2 (0 hoặc 2)
+           
 
             timeAttack -= Time.deltaTime;
 
-            if (attackType == 0)
-            {
+           
 
                 if (timeAttack <= 0)
                 {
@@ -65,7 +66,7 @@ public class Boss : MonoBehaviour
                     Destroy(oneSkill, 0.1f);
                     timeAttack = TimeAttackRate;
                 }
-            }
+            
             /*if (attackType == 1)
             {
                 if (timeAttack <= 0)
@@ -118,10 +119,17 @@ public class Boss : MonoBehaviour
         {
             currentHPEnemy -= statusPlayer.currentDamage;
             UpdateHP();
-            if (currentHPEnemy <= 0)
+            if (currentHPEnemy <= 0 && !isDead )
             {
-                Destroy(gameObject);
+                StartCoroutine(DeadEffect());
             }
         }
     }
+    private IEnumerator  DeadEffect()
+    {
+        isDead = true;
+        deadEffect.Play();
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
+    }    
 }
