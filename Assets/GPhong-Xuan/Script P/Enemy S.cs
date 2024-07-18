@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EnemyP : MonoBehaviour
+public class EnemyS : MonoBehaviour
 {
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
     public float detectionRange = 7f;  // Phạm vi phát hiện người chơi
