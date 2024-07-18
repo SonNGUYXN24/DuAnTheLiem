@@ -67,6 +67,7 @@ public class StatusPlayer : MonoBehaviour
         currentBloods = bloods;
         UpdateUI();
         anim = GetComponent<Animator>();
+        CollectItem();
     }
 
     private void Update()
@@ -114,9 +115,15 @@ public class StatusPlayer : MonoBehaviour
         if (currentHp <= 0)
         {
             anim.SetBool("IsDeathing", true);
+            gameObject.SetActive(false);
             gameOver.SetActive(true);
             // Tạm dừng game
             Time.timeScale = 0f;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            gameOver.SetActive(false);
         }
         
     }
@@ -189,5 +196,14 @@ public class StatusPlayer : MonoBehaviour
             UpdateUI();
         }
     }
-
+    public void CollectItem()
+    {
+        // Lấy giá trị từ StatusPlayer và gán vào PlayerData
+        PlayerData.Instance.playerHp = currentHp;
+        PlayerData.Instance.playerStamina = currentStamina;
+        PlayerData.Instance.playerDamage = currentDamage;
+        PlayerData.Instance.playerArmor = currentArmor;
+        PlayerData.Instance.playerMoney = currentMoney;
+        // ... (gán các biến khác)
+    }
 }

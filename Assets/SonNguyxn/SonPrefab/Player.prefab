@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 49074671431446524}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6528015, y: 0.3671999, z: -10}
+  m_LocalPosition: {x: 0.98239136, y: 0.8595998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Follow: {fileID: 8379530001711099377}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 2.04
+    OrthographicSize: 3.07
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4447,7 +4447,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.41
-  m_ScreenY: 0.59
+  m_ScreenY: 0.64
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -9165,6 +9165,10 @@ MonoBehaviour:
   anim: {fileID: 2623950038142655921}
   swordCollider: {fileID: 2796189458074594001}
   audioSource: {fileID: 6416020881298878184}
+  moveSound: {fileID: 8300000, guid: b27e49e15af294d42894bea2641723a8, type: 3}
+  jumpSound: {fileID: 8300000, guid: 9c436fd7388a85e4c8034f4c3aed3c33, type: 3}
+  swordSound: {fileID: 8300000, guid: 5347503504125ca42be2adb47292f8c1, type: 3}
+  skill1Sound: {fileID: 8300000, guid: e444d2b0bb62ff442818fa3858f82b6a, type: 3}
   climbSpeed: 0
   blockCollider: {fileID: 3672617230852510529}
   fireballPrefab: {fileID: 108477544043595364, guid: bd5228b916a54f24d8b100e2af328b9e, type: 3}
@@ -9209,12 +9213,12 @@ MonoBehaviour:
   currentMoney: 0
   currentHp: 0
   currentDamage: 0
-  baseMoney: 0
+  baseMoney: 2000
   timeSinceLastHeal: 0
   diamondGreen: 1
   diamondPurple: 1
   coins: 1
-  bloods: 1
+  bloods: 20
   currentCoins: 0
   currentdiamondG: 0
   currentdiamondP: 0
@@ -9303,7 +9307,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.407
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -3215,7 +3215,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f6f3d73129caf4f4b9b87eba89210375, type: 3}
+  m_audioClip: {fileID: 8300000, guid: df25eec117ee3b14389ee603bb798275, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.13
   m_Pitch: 1
@@ -44903,9 +44903,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9433962, g: 0.15485933, b: 0.15485933, a: 1}
+    m_PressedColor: {r: 0.20155694, g: 0.8396226, b: 0.03485222, a: 1}
+    m_SelectedColor: {r: 0.6603774, g: 0.058561735, b: 0.6128853, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -44936,7 +44936,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &524187155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45035,9 +45035,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.8679245, g: 0.25710213, b: 0.25710213, a: 1}
+    m_PressedColor: {r: 0.11497158, g: 0.7264151, b: 0.10553575, a: 1}
+    m_SelectedColor: {r: 0.10256318, g: 0.17053172, b: 0.8113208, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -45068,7 +45068,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &527193071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48282,8 +48282,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 676190231}
     m_Modifications:
     - target: {fileID: 2998883831648203596, guid: 060d5a311701019469d5136828d6d74d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.22439516
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998883831648203596, guid: 060d5a311701019469d5136828d6d74d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.22439516
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998883831648203596, guid: 060d5a311701019469d5136828d6d74d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22439516
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998883831648203596, guid: 060d5a311701019469d5136828d6d74d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.250732
+      value: 27.11
       objectReference: {fileID: 0}
     - target: {fileID: 2998883831648203596, guid: 060d5a311701019469d5136828d6d74d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -51106,6 +51118,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 676190231}
     m_Modifications:
+    - target: {fileID: 4483491260352044376, guid: 88e9821b44c3f714ca4315f068a60770, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1533977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483491260352044376, guid: 88e9821b44c3f714ca4315f068a60770, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1533977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483491260352044376, guid: 88e9821b44c3f714ca4315f068a60770, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1533977
+      objectReference: {fileID: 0}
     - target: {fileID: 4483491260352044376, guid: 88e9821b44c3f714ca4315f068a60770, type: 3}
       propertyPath: m_LocalPosition.x
       value: 144.04745
@@ -66879,6 +66903,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c436fd7388a85e4c8034f4c3aed3c33, type: 3}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: moveSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b27e49e15af294d42894bea2641723a8, type: 3}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: swordSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5347503504125ca42be2adb47292f8c1, type: 3}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: skill1Sound
+      value: 
+      objectReference: {fileID: 8300000, guid: e444d2b0bb62ff442818fa3858f82b6a, type: 3}
     - target: {fileID: 4151202154603011004, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_Camera
       value: 
@@ -66905,27 +66945,7 @@ PrefabInstance:
       objectReference: {fileID: 2057628776}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: baseMoney
-      value: 2000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: cungDamage
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: kiemDamage
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: phiTieuInfo
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: damageAttack
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: sliverArDamage
-      value: 500
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -132207,7 +132227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2057628777
 MonoBehaviour:
   m_ObjectHideFlags: 0

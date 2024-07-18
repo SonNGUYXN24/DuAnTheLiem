@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D swordCollider;
     private float xInput;
     public AudioSource audioSource;
-    /*public AudioClip moveSound;
+    public AudioClip moveSound;
     public AudioClip jumpSound;
     public AudioClip swordSound;
     public AudioClip skill1Sound;
-    public AudioClip skill2Sound;*/
+    //public AudioClip skill2Sound;
     public int climbSpeed;
     public BoxCollider2D blockCollider; // Biến để tham chiếu đến BoxCollider2D của chặn đòn
     private bool isClimbing = false; // Kiểm tra xem người chơi có đang leo hay không
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsRunning", true);
             if (!audioSource.isPlaying)
             {
-                //audioSource.PlayOneShot(moveSound);
+                audioSource.PlayOneShot(moveSound);
             }
         }
         else
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
             // Kích hoạt IsDodging (nếu bạn đã đặt trigger này trong animator)
             anim.SetBool("IsRolling", true);
-
+           
             // Thay đổi vận tốc theo trục X để thực hiện lộn
             rb.velocity = new Vector2(dodgeDirection * dodgeSpeed, rb.velocity.y);
 
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
             // và đã qua thời gian cooldown
             // Tạo một số ngẫu nhiên để chọn animation tấn công
             int randomAttack = UnityEngine.Random.Range(1, 4); // Chọn từ 1 đến 3
-
+            audioSource.PlayOneShot(swordSound);
             // Kích hoạt trigger tấn công ngẫu nhiên (Attack1, Attack2, Attack3)
             anim.SetBool($"Attack{randomAttack}", true);
             anim.SetBool("IsStaying", false);
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D fireballRb = fireball.GetComponent<Rigidbody2D>();
             // Đặt hướng di chuyển của quả cầu lửa theo hướng của người chơi
             fireballRb.velocity = new Vector2(transform.localScale.x * fireballSpeed, 0f);
-
+            audioSource.PlayOneShot(skill1Sound);
             // Flip quả cầu lửa theo hướng của người chơi
             SpriteRenderer fireballSprite = fireball.GetComponent<SpriteRenderer>();
             fireballSprite.flipX = (transform.localScale.x < 0); // Nếu Player quay mặt sang trái, flip quả cầu lửa
@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            audioSource.PlayOneShot(jumpSound);
             anim.SetBool("IsJumping", true);
         }
     }
