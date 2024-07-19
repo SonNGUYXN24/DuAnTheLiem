@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewSceneController : MonoBehaviour
 {
-    private void Start()
+   /* private void Start()
     {
         // Lấy dữ liệu từ Singleton
         int hp = PlayerData.Instance.playerHp;
@@ -17,5 +17,5 @@ public class NewSceneController : MonoBehaviour
         Debug.Log($"Player HP in Scene 2: {hp}");
         Debug.Log($"Player Stamina in Scene 2: {stamina}");
         // ... (hiển thị các biến khác)
-    }
+    }*/
 }

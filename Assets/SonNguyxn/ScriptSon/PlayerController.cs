@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip swordSound;
     public AudioClip skill1Sound;
+    private bool isFireing = true;
+    public StatusPlayer playerStatus;
     //public AudioClip skill2Sound;
     public int climbSpeed;
     public BoxCollider2D blockCollider; // Biến để tham chiếu đến BoxCollider2D của chặn đòn
@@ -135,21 +137,31 @@ public class PlayerController : MonoBehaviour
     public void SkillFireBall()
     {
         // Kiểm tra khi người chơi nhấn phím kích hoạt Skill 1
-        if (Input.GetKeyDown(KeyCode.C))
+        if(playerStatus.currentStamina >= 30)
         {
-            // Tạo ra quả cầu lửa
-            GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            Rigidbody2D fireballRb = fireball.GetComponent<Rigidbody2D>();
-            // Đặt hướng di chuyển của quả cầu lửa theo hướng của người chơi
-            fireballRb.velocity = new Vector2(transform.localScale.x * fireballSpeed, 0f);
-            audioSource.PlayOneShot(skill1Sound);
-            // Flip quả cầu lửa theo hướng của người chơi
-            SpriteRenderer fireballSprite = fireball.GetComponent<SpriteRenderer>();
-            fireballSprite.flipX = (transform.localScale.x < 0); // Nếu Player quay mặt sang trái, flip quả cầu lửa
+            isFireing = true;
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                playerStatus.currentStamina -= 30;
+                // Tạo ra quả cầu lửa
+                GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                Rigidbody2D fireballRb = fireball.GetComponent<Rigidbody2D>();
+                // Đặt hướng di chuyển của quả cầu lửa theo hướng của người chơi
+                fireballRb.velocity = new Vector2(transform.localScale.x * fireballSpeed, 0f);
+                audioSource.PlayOneShot(skill1Sound);
+                // Flip quả cầu lửa theo hướng của người chơi
+                SpriteRenderer fireballSprite = fireball.GetComponent<SpriteRenderer>();
+                fireballSprite.flipX = (transform.localScale.x < 0); // Nếu Player quay mặt sang trái, flip quả cầu lửa
 
-            // Hủy bỏ quả cầu lửa sau 2 giây
-            Destroy(fireball, 2f);
+                // Hủy bỏ quả cầu lửa sau 2 giây
+                Destroy(fireball, 2f);
+            }
         }
+        else
+        {
+            isFireing = false;
+        }
+        
     }
     public void Block()
     {

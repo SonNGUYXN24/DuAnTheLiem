@@ -22,23 +22,13 @@ public class StatusPlayer : MonoBehaviour
     public GameObject gameOver;
     public GameObject bloodButton;
     public int maxHp = 100; // Máu tối đa
-    private int maxStamina = 100; // Stamina tối đa
-    public int kiemDamage; // Giá trị Damage của Kiem
-    public int cungDamage; // Giá trị Damage của Kiem
-    public int sliverArDamage;
-    public int khienInfo;
-    public int phiTieuInfo;
-    public int helmetInfo;
-    public int ringInfo;
-    public int aoGiapLuaHp;
-    public int aoGiapLuaStamina;
-    public int aoGiapLuaArmor;
+    public int maxStamina = 100; // Stamina tối đa
     public int currentMoney;
     public int currentHp; // Máu hiện tại
-    private int currentStamina; // Stamina hiện tại
+    public int currentStamina; // Stamina hiện tại
     public int currentDamage; // Damage hiện tại
-    private int currentArmor; // Armor hiện tại
-    private int baseDamage = 100; // Damage cơ bản
+    public int currentArmor; // Armor hiện tại
+    [SerializeField] private int baseDamage = 100; // Damage cơ bản
     private int baseArmor = 100; // Armor cơ bản
     public int baseMoney = 10000; // Money cơ bản
     private float staminaRegenRate = 1f; // Tốc độ hồi Stamina mỗi giây
@@ -67,7 +57,6 @@ public class StatusPlayer : MonoBehaviour
         currentBloods = bloods;
         UpdateUI();
         anim = GetComponent<Animator>();
-        CollectItem();
     }
 
     private void Update()
@@ -91,7 +80,7 @@ public class StatusPlayer : MonoBehaviour
             canJump = false;
         }
         // Hồi Stamina theo thời gian
-        if (currentStamina < (maxStamina + aoGiapLuaStamina))
+        if (currentStamina < (maxStamina))
         {
             timeSinceLastStaminaRegen += Time.deltaTime;
             if (timeSinceLastStaminaRegen >= 0.1f)
@@ -101,7 +90,7 @@ public class StatusPlayer : MonoBehaviour
             }
         }
         // Hồi máu theo thời gian thực
-        if(currentHp < (maxHp + +ringInfo + aoGiapLuaHp))
+        if(currentHp < (maxHp))
         {
             timeSinceLastHeal += Time.deltaTime;
             if (timeSinceLastHeal >= healInterval)
@@ -132,14 +121,14 @@ public class StatusPlayer : MonoBehaviour
     public void DecreaseStamina(int amount)
     {
         currentStamina -= amount;
-        currentStamina = Mathf.Clamp(currentStamina, 0, (maxStamina + +aoGiapLuaStamina));
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         UpdateUI();
     }
     // Hàm hồi máu
     public void Heal(int amount)
     {
         currentHp += amount;
-        currentHp = Mathf.Clamp(currentHp, 0, (maxHp + aoGiapLuaHp + ringInfo));
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
         UpdateUI();
     }
     // Hàm cộng máu
@@ -153,25 +142,24 @@ public class StatusPlayer : MonoBehaviour
     public void RegenerateStamina(int amount)
     {
         currentStamina += amount;
-        currentStamina = Mathf.Clamp(currentStamina, 0, (maxStamina + aoGiapLuaStamina));
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         UpdateUI();
     }
     
     // Hàm cập nhật giao diện
     public void UpdateUI()
     {
-        hpSlider.value = (float)currentHp / (maxHp + +ringInfo + aoGiapLuaHp);
-        staminaSlider.value = (float)currentStamina  / (maxStamina + aoGiapLuaStamina);
-        hpText.text = $"{currentHp}/{maxHp + ringInfo + aoGiapLuaHp}";
-        staminaText.text = $"{currentStamina}/{maxStamina + aoGiapLuaStamina}";
-        damageText.text = $"Damage: {currentDamage + (kiemDamage + cungDamage + sliverArDamage + phiTieuInfo) }"; // Cộng dồn với Damage của Player
-        armorText.text = $"Armor: {currentArmor + (helmetInfo + + khienInfo + aoGiapLuaArmor)}"; // Có thể cộng dồn với các vật phẩm khác
+        hpSlider.value = (float)currentHp /(maxHp);
+        staminaSlider.value = (float)currentStamina  / maxStamina;
+        hpText.text = $"{currentHp}/{maxHp} ";
+        staminaText.text = $"{currentStamina}/{maxStamina }";
+        damageText.text = $"Damage: {currentDamage }"; // Cộng dồn với Damage của Player
+        armorText.text = $"Armor: {currentArmor}"; // Có thể cộng dồn với các vật phẩm khác
         moneyCount.text = $"{currentMoney}";
         coinstext.text = $"{currentCoins}";
         diamondGText.text = $"{currentdiamondG}";
         diamondPText.text = $"{currentdiamondP}";
         bloodText.text = $"{currentBloods}";
-        
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -196,7 +184,7 @@ public class StatusPlayer : MonoBehaviour
             UpdateUI();
         }
     }
-    public void CollectItem()
+    /*public void CollectItem()
     {
         // Lấy giá trị từ StatusPlayer và gán vào PlayerData
         PlayerData.Instance.playerHp = currentHp;
@@ -205,5 +193,5 @@ public class StatusPlayer : MonoBehaviour
         PlayerData.Instance.playerArmor = currentArmor;
         PlayerData.Instance.playerMoney = currentMoney;
         // ... (gán các biến khác)
-    }
+    }*/
 }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ContinueController : MonoBehaviour
+public class ContinueController1 : MonoBehaviour
 {
-    private string lastSceneName; // Lưu tên của Scene trước đó
-    public ContinueController1 controller1;
-    private void Start()
+    public string lastSceneName; // Lưu tên của Scene trước đó
+
+    private void Update()
     {
-        
+        // Lấy tên của Scene hiện tại
+        lastSceneName = SceneManager.GetActiveScene().name;
     }
 
     public void GoToMainMenu()

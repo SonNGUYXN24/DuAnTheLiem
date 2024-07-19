@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
-    public float detectionRange = 7f;  // Phạm vi phát hiện người chơi
+    public float detectionRange = 15f;  // Phạm vi phát hiện người chơi
     private float stopRange = 0.5f;
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
-
     private float TimeAttackRate = 2f;
     private float timeAttack;
-
+    public GameObject portalEnd;
     private bool right;
 
     public Slider healthSlider;//slider hp boss
@@ -27,6 +26,9 @@ public class Boss : MonoBehaviour
     public Transform Knifedamage;
     public GameObject hitbox;
     public ParticleSystem deadEffect;
+    public ParticleSystem fireBallHit;
+    public ParticleSystem bloodEffect;
+    public ParticleSystem swordEffect;
     private bool isDead;
 
     void Start()
@@ -35,6 +37,7 @@ public class Boss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHPEnemy = health;
         UpdateHP();
+     
     }
     public void UpdateHP()
     {
@@ -67,14 +70,7 @@ public class Boss : MonoBehaviour
                     timeAttack = TimeAttackRate;
                 }
             
-            /*if (attackType == 1)
-            {
-                if (timeAttack <= 0)
-                {
-                    animator.SetTrigger("Attack2");
-                    timeAttack = TimeAttackRate;
-                }
-            }*/
+           
         }
     }
     private void followPlayer()//thấy player thì chạy theo
@@ -86,8 +82,9 @@ public class Boss : MonoBehaviour
         {
             if (distanceToPlayer > stopRange)
             {
+                
                 Vector2 moveDirection = (Player.position - transform.position).normalized;
-                rb.velocity = moveDirection * 1.5f;// Tốc độ di chuyển
+                rb.velocity = moveDirection * 5f;// Tốc độ di chuyển
 
                 animator.SetBool("ismove", true);
 
@@ -110,6 +107,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
+         
             animator.SetBool("ismove", false);
         }
     }
@@ -118,8 +116,20 @@ public class Boss : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword"))
         {
             currentHPEnemy -= statusPlayer.currentDamage;
+            swordEffect.Play();
             UpdateHP();
-            if (currentHPEnemy <= 0 && !isDead )
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
+        if (collision.gameObject.CompareTag("FireBall"))
+        {
+            currentHPEnemy -= 100;
+            fireBallHit.Play();
+            UpdateHP();
+
+            if (currentHPEnemy <= 0 && !isDead)
             {
                 StartCoroutine(DeadEffect());
             }
@@ -129,7 +139,9 @@ public class Boss : MonoBehaviour
     {
         isDead = true;
         deadEffect.Play();
-        yield return new WaitForSeconds(5f);
+        bloodEffect.Play();
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
+        portalEnd.SetActive(true);
     }    
 }

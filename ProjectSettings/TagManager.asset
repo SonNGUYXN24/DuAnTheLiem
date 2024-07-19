@@ -16,6 +16,7 @@ TagManager:
   - Coins
   - Climb
   - FireBall
+  - BossBatle
   layers:
   - Default
   - TransparentFX

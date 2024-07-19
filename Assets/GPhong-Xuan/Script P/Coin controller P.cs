@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class CoincontrollerP : MonoBehaviour
 {
     // Start is called before the first frame update
+    public AudioSource audioSource;
+    public AudioClip coinsSound;
+    public ParticleSystem itemsEffect;
     void Start()
     {
         
@@ -23,9 +26,15 @@ public class CoincontrollerP : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Thêm logic ở đây (ví dụ: phát âm thanh hoặc hiệu ứng hạt)
-
-            // Hủy đối tượng đồng xu
-            Destroy(gameObject);
+            StartCoroutine(PlaySound());
+            // Hủy đối tượng đồng xu   
         }
+    }
+    private IEnumerator PlaySound()
+    {
+        audioSource.PlayOneShot(coinsSound);
+        itemsEffect.Play();
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 }

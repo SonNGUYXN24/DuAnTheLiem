@@ -65,7 +65,7 @@ public class EnemyP : MonoBehaviour
                     //animation tấn công
                     animator.SetTrigger("Attack1");
                     var oneSkill = Instantiate(hitbox, Knifedamage.position, Quaternion.identity);
-                    Destroy(oneSkill, 0.1f);
+                    Destroy(oneSkill, 0.2f);
                     timeAttack = TimeAttackRate;
                 }
             }
@@ -74,6 +74,8 @@ public class EnemyP : MonoBehaviour
                 if (timeAttack <= 0)
                 {
                     animator.SetTrigger("Attack2");
+                    var oneSkill = Instantiate(hitbox, Knifedamage.position, Quaternion.identity);
+                    Destroy(oneSkill, 0.2f);
                     timeAttack = TimeAttackRate;
                 }
             }
@@ -89,7 +91,7 @@ public class EnemyP : MonoBehaviour
             if (distanceToPlayer > stopRange)
             {
                 Vector2 moveDirection = (Player.position - transform.position).normalized;
-                rb.velocity = moveDirection * 1.5f;// Tốc độ di chuyển
+                rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
 
                 animator.SetBool("isMoving", true);
 
@@ -129,7 +131,7 @@ public class EnemyP : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("FireBall"))
         {
-            currentHPEnemy -= 50;
+            currentHPEnemy -= 100;
             fireBallHit.Play();
             UpdateHP();
 

@@ -6,6 +6,7 @@ public class CungSon : MonoBehaviour
 {
     public GameObject cungCanvas; // Tham chiếu đến canvas kiem1Canvas
     public StatusPlayer statusPlayer; // Tham chiếu đến script StatusPlayer
+    private bool infoButtonClicked = false; // Cờ để theo dõi xem nút đã được nhấp hay chưa
     private void Start()
     {
 
@@ -23,13 +24,22 @@ public class CungSon : MonoBehaviour
     // Hàm ShowInfoKiem1 (nếu bạn muốn gọi từ nơi khác)
     public void ShowInfoCung1()
     {
-        cungCanvas.SetActive(true);
-        InfoCung();
+        if (!infoButtonClicked) // Kiểm tra xem nút đã được nhấp chưa
+        {
+            cungCanvas.SetActive(true);
+            InfoCung();
+            infoButtonClicked = true; // Đánh dấu nút đã được nhấp
+        }
+        else
+        {
+            // Tùy chọn, bạn có thể cung cấp phản hồi cho người dùng (ví dụ: hiển thị thông báo)
+            Debug.Log("Nút thông tin đã được nhấp trước đó!");
+        }
     }
     public void InfoCung()
     {
         // Cập nhật giá trị Damage của Player
-        statusPlayer.cungDamage = 300; // Giá trị Damage từ CungSonController
+        statusPlayer.currentDamage += 300; // Giá trị Damage từ CungSonController
         statusPlayer.UpdateUI(); // Cập nhật giao diện
     }
 }
