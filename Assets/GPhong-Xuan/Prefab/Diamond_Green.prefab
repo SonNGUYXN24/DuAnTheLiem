@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: -6773891116597411095}
   coinsSound: {fileID: 8300000, guid: 12b9169f86f026341be894842bd8c89a, type: 3}
-  itemsEffect: {fileID: 333288015962569594, guid: c8c19c82e67d70c46ae228c3d1843fd3, type: 3}
+  itemsEffect: {fileID: 7240242709000899571}
 --- !u!50 &1270824150894612034
 Rigidbody2D:
   serializedVersion: 4
@@ -344,5 +344,10 @@ PrefabInstance:
 --- !u!4 &5927195861958522233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3646562160583656944, guid: c8c19c82e67d70c46ae228c3d1843fd3, type: 3}
+  m_PrefabInstance: {fileID: 6979050883875844233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7240242709000899571 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 333288015962569594, guid: c8c19c82e67d70c46ae228c3d1843fd3, type: 3}
   m_PrefabInstance: {fileID: 6979050883875844233}
   m_PrefabAsset: {fileID: 0}

@@ -2,14 +2,16 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 
 
 
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpSpeed = 13f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpSpeed;
+    public float currentSpeed;
     public float dodgeSpeed = 4f;
     public float dodgeDirection = 0.5f;
     private float dodgeTime;
@@ -24,7 +26,17 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip swordSound;
     public AudioClip skill1Sound;
+    public AudioClip ultimateSound;
+    public AudioClip explosionSound;
     private bool isFireing = true;
+    private bool isUltimating = false;
+    private bool isExplosing = false;
+    public CinemachineVirtualCamera virtualCamera;
+    public ParticleSystem ultimateEffect;
+    public ParticleSystem explosionEffect;
+    private bool isCameraZoomed = false;
+    public BoxCollider2D ultimateTrigger;
+    public BoxCollider2D explosionTrigger;
     public StatusPlayer playerStatus;
     //public AudioClip skill2Sound;
     public int climbSpeed;
@@ -37,6 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        currentSpeed = moveSpeed;
+        ultimateEffect.Stop();
+        explosionEffect.Stop();
     }
 
     void Update()
@@ -48,12 +63,15 @@ public class PlayerController : MonoBehaviour
         Attack();
         Climb();
         SkillFireBall();
+        Ultimate();
+        SkillExplosion();
+        SkillExplosion();
     }
 
     public void Move()
     {
         xInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(xInput * currentSpeed, rb.velocity.y);
         if (xInput != 0)
         {
             transform.localScale = new Vector3(Mathf.Sign(xInput), 1, 1);
@@ -77,6 +95,39 @@ public class PlayerController : MonoBehaviour
             // Điều khiển người chơi lên hoặc xuống
             rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbSpeed);
         }
+    }
+    public void SkillExplosion()
+    {
+        if(playerStatus.currentStamina >= 50 && playerStatus.currentHp >= 50)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                isExplosing = true;
+                playerStatus.currentStamina -= 50;
+                playerStatus.currentHp -= 30;
+                explosionTrigger.enabled = true;
+                audioSource.PlayOneShot(explosionSound);
+                // Thu nhỏ virtual camera
+                virtualCamera.m_Lens.OrthographicSize = 7f; // Điều chỉnh kích thước theo mong muốn
+                isCameraZoomed = true;
+                // Đóng băng trục X và trục Y của Player
+                currentSpeed -= 6f;
+                Debug.Log("Current Orthographic Size: " + virtualCamera.m_Lens.OrthographicSize);
+                // Kết thúc hiệu ứng Ultimate
+                StartCoroutine(WaitSkill());
+                explosionEffect.Play();
+                // Đợi thêm 0.5 giây
+                StartCoroutine(ResetVirtualCamera2());
+            }
+        }
+        else
+        {
+            isExplosing = false;
+        }
+    }
+    private IEnumerator WaitSkill()
+    {
+        yield return new WaitForSeconds(0.7f);
     }
     public void Dodge()
     {
@@ -134,6 +185,56 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsStaying", true);
         }
     }
+
+    public void Ultimate()
+    {
+        if (playerStatus.currentStamina == 100)
+        { 
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                isUltimating = true;
+                playerStatus.currentStamina -=100;
+                ultimateTrigger.enabled = true;
+                audioSource.PlayOneShot(ultimateSound);
+                 // Thu nhỏ virtual camera
+                 virtualCamera.m_Lens.OrthographicSize = 7f; // Điều chỉnh kích thước theo mong muốn
+                 isCameraZoomed = true;
+                    // Đóng băng trục X và trục Y của Player
+                    currentSpeed -= 6f;
+                    Debug.Log("Current Orthographic Size: " + virtualCamera.m_Lens.OrthographicSize);
+                    // Kết thúc hiệu ứng Ultimate
+                    ultimateEffect.Play();
+                    // Đợi thêm 0.5 giây
+                    StartCoroutine(ResetVirtualCamera());
+            }
+ 
+        }
+        else
+        {
+            isUltimating = false;
+        }
+    }
+    private IEnumerator ResetVirtualCamera()
+    {
+        yield return new WaitForSeconds(8f); // Đợi 0.2 giây
+                                               // Trở lại trạng thái ban đầu của virtual camera
+        ultimateTrigger.enabled = false;
+        virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định
+        isUltimating = false;
+        isCameraZoomed = false;
+        currentSpeed += 6f;
+    }
+    private IEnumerator ResetVirtualCamera2()
+    {
+        yield return new WaitForSeconds(1.5f); // Đợi 0.2 giây
+                                             // Trở lại trạng thái ban đầu của virtual camera
+        explosionTrigger.enabled = false;
+        virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định
+        isExplosing = false;
+        isCameraZoomed = false;
+        currentSpeed += 6f;
+    }
+
     public void SkillFireBall()
     {
         // Kiểm tra khi người chơi nhấn phím kích hoạt Skill 1
@@ -154,7 +255,7 @@ public class PlayerController : MonoBehaviour
                 fireballSprite.flipX = (transform.localScale.x < 0); // Nếu Player quay mặt sang trái, flip quả cầu lửa
 
                 // Hủy bỏ quả cầu lửa sau 2 giây
-                Destroy(fireball, 2f);
+                Destroy(fireball, 1f);
             }
         }
         else

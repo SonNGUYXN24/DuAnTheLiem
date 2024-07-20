@@ -139,6 +139,24 @@ public class EnemyC : MonoBehaviour
                 StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+        if (collision.gameObject.CompareTag("Ultimate"))
+        {
+            currentHPEnemy -= 800;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            currentHPEnemy -= 500;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
     }
     private IEnumerator PlayBloodEffectAndDestroy()
     {

@@ -134,6 +134,24 @@ public class Boss : MonoBehaviour
                 StartCoroutine(DeadEffect());
             }
         }
+        if (collision.gameObject.CompareTag("Ultimate"))
+        {
+            currentHPEnemy -= 800;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            currentHPEnemy -= 500;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
     }
     private IEnumerator  DeadEffect()
     {

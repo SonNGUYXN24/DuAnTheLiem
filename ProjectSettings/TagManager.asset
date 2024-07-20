@@ -17,6 +17,9 @@ TagManager:
   - Climb
   - FireBall
   - BossBatle
+  - FxTemporaire
+  - Ultimate
+  - Explosion
   layers:
   - Default
   - TransparentFX

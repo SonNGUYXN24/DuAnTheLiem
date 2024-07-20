@@ -2352,11 +2352,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!198 &131139060 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1388346527614497521, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
-  m_PrefabInstance: {fileID: 1383887007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &135871163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,7 +3493,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.07
+  orthographic size: 2.93
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3523,7 +3518,7 @@ Transform:
   m_GameObject: {fileID: 181915124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -456.5968, y: -1.9481933, z: -10}
+  m_LocalPosition: {x: -456.6416, y: -1.9873931, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49935,11 +49930,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -3.986145, y: 7.056028}
-      - {x: -7.413001, y: 3.6034167}
-      - {x: -7.418077, y: -3.7332778}
+    - - {x: -3.2824097, y: 10.691907}
+      - {x: -7.5302496, y: 7.239296}
+      - {x: -7.3354964, y: -11.079218}
       - {x: 525.8398, y: -119.79191}
-      - {x: 525.8398, y: -116.72176}
+      - {x: 524.5896, y: -80.46609}
       - {x: 520.3685, y: 9.652157}
   m_UseDelaunayMesh: 0
 --- !u!1001 &692500886
@@ -63514,6 +63509,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!198 &1117721874 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1289591416449449725, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+  m_PrefabInstance: {fileID: 1480772066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1121030048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68412,13 +68412,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 695715102}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
-      propertyPath: swordEffect
+      propertyPath: fireBallHit
       value: 
-      objectReference: {fileID: 131139060}
+      objectReference: {fileID: 1383887008}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
+    - target: {fileID: 3156255861426847428, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5391179413402483900, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -68467,6 +68471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8590911902034480864, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_Name
       value: Goblin (16)
@@ -68476,6 +68484,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+--- !u!198 &1383887008 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5243162253589722447, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+  m_PrefabInstance: {fileID: 1383887007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383949522
 GameObject:
   m_ObjectHideFlags: 0
@@ -70241,6 +70254,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315837222910131124, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_TagString
+      value: Explosion
+      objectReference: {fileID: 0}
     - target: {fileID: 1567306000292012377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -70262,49 +70279,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: playerStatus
+      propertyPath: explosionEffect
       value: 
-      objectReference: {fileID: 695715101}
+      objectReference: {fileID: 1117721874}
     - target: {fileID: 4151202154603011004, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 181915126}
-    - target: {fileID: 4384531995462870214, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5146825688520943078, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6259252913420901492, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 181915127}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: coins
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: bloods
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 2057628776}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: baseMoney
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: diamondGreen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
-      propertyPath: diamondPurple
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -457.5792
@@ -72738,6 +72727,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!198 &1600923068 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7240242709000899571, guid: 060d5a311701019469d5136828d6d74d, type: 3}
+  m_PrefabInstance: {fileID: 1760200083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1611428438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75666,10 +75660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6274273710142937896, guid: 060d5a311701019469d5136828d6d74d, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 6431124947468402088, guid: 060d5a311701019469d5136828d6d74d, type: 3}
+      propertyPath: itemsEffect
+      value: 
+      objectReference: {fileID: 1600923068}
     - target: {fileID: 7316225948685931020, guid: 060d5a311701019469d5136828d6d74d, type: 3}
       propertyPath: m_Name
       value: Diamond_Green (1)
@@ -76091,13 +76085,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 5.42
       objectReference: {fileID: 0}
-    - target: {fileID: 1264648835462619905, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.02
-      objectReference: {fileID: 0}
     - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.73
+      value: -5.54
       objectReference: {fileID: 0}
     - target: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -76135,6 +76125,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2998596546175816198, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
+      propertyPath: itemsEffect
+      value: 
+      objectReference: {fileID: 1782966000}
     - target: {fileID: 3241044682788699533, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
       propertyPath: m_Name
       value: Diamond_purple (1)
@@ -76144,6 +76138,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
+--- !u!198 &1782966000 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2602983304149748082, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
+  m_PrefabInstance: {fileID: 1782965999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783993967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76218,6 +76217,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590911902034480864, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
@@ -139606,6 +139609,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590911902034480864, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
