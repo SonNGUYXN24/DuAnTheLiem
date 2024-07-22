@@ -98,13 +98,13 @@ public class PlayerController : MonoBehaviour
     }
     public void SkillExplosion()
     {
-        if(playerStatus.currentStamina >= 50 && playerStatus.currentHp >= 50)
+        if(playerStatus.currentStamina >= 50 && playerStatus.currentHp >= 20)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 isExplosing = true;
                 playerStatus.currentStamina -= 50;
-                playerStatus.currentHp -= 30;
+                playerStatus.currentHp -= 10;
                 explosionTrigger.enabled = true;
                 audioSource.PlayOneShot(explosionSound);
                 // Thu nhỏ virtual camera
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
                  virtualCamera.m_Lens.OrthographicSize = 7f; // Điều chỉnh kích thước theo mong muốn
                  isCameraZoomed = true;
                     // Đóng băng trục X và trục Y của Player
-                    currentSpeed -= 6f;
+                    currentSpeed -= 4f;
                     Debug.Log("Current Orthographic Size: " + virtualCamera.m_Lens.OrthographicSize);
                     // Kết thúc hiệu ứng Ultimate
                     ultimateEffect.Play();
@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator ResetVirtualCamera()
     {
-        yield return new WaitForSeconds(8f); // Đợi 0.2 giây
+        yield return new WaitForSeconds(7f); // Đợi 0.2 giây
                                                // Trở lại trạng thái ban đầu của virtual camera
         ultimateTrigger.enabled = false;
         virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định

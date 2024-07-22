@@ -1875,8 +1875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 98.72, y: -52.13}
-  m_SizeDelta: {x: 566.05, y: 331.75}
+  m_AnchoredPosition: {x: 37.1, y: -27.49}
+  m_SizeDelta: {x: 488.31, y: 274.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &610909025
 MonoBehaviour:
@@ -1898,14 +1898,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A : \u0110i qua tr\xE1i\r\t                X: Chi\xEAu 2\r\nD : \u0110i
-    sang ph\u1EA3i\r                          Z: Chi\xEAu 3\r\nW : \u0110i l\xEAn
-    \r\t                Space: Nh\u1EA3y l\xEAn\r\nS   : \u0110i xu\u1ED1ng\r\t               
-    E: M\u1EDF kho \u0111\u1ED3\r\nF  : T\u01B0\u01A1ng t\xE1c \r\t               
-    Esc: Tho\xE1t \r\nC: Chi\xEAu 1\r\n"
+  m_text: "A: Left move\t       X: Ultimate\r\nD: Right move\r                          
+    Z: Explosion\nW: Up move \r\t                 Space: Jump\nS: Down\r\t                
+    Tab: Open inventory\nF: Normal Attack \r\t                 Esc: Quit\r\nC: Fire
+    ball           E: Open store\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 973e43b9578af1945b9ff4182bafe008, type: 2}
+  m_sharedMaterial: {fileID: 3229281641696938726, guid: 973e43b9578af1945b9ff4182bafe008, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1929,8 +1928,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

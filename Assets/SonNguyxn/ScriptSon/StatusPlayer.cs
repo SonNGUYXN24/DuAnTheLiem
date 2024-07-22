@@ -167,7 +167,7 @@ public class StatusPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("KnifeEnemy"))
         {
-            currentHp -= 50;
+            currentHp -= 30;
             playerBloodEffect.Play();
             UpdateUI();
         }

@@ -26068,7 +26068,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1507283671}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1888165262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -27669,7 +27669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: maxHp
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: bloods
@@ -27682,6 +27682,10 @@ PrefabInstance:
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: baseMoney
       value: 2000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: maxStamina
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: diamondGreen
@@ -27737,7 +27741,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1127898906}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
 --- !u!4 &1888165262 stripped
@@ -27975,7 +27982,6 @@ SceneRoots:
   - {fileID: 784670678}
   - {fileID: 455572557}
   - {fileID: 7019328043162688666}
-  - {fileID: 1127898906}
   - {fileID: 1888165261}
   - {fileID: 1416110809}
   - {fileID: 398384791}
