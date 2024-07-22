@@ -89,7 +89,7 @@ public class EnemyC : MonoBehaviour
         {
             if (distanceToPlayer > stopRange)
             {
-                Vector2 moveDirection = (Player.position - transform.position).normalized;
+                Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
                 rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
 
                 animator.SetBool("isMoving", true);
