@@ -44,6 +44,7 @@ public class StatusPlayer : MonoBehaviour
     public int currentdiamondG;
     public int currentdiamondP;
     public int currentBloods;
+    public ParticleSystem playerBloodEffect;
     private void Start()
     {
         currentHp = maxHp;
@@ -57,6 +58,7 @@ public class StatusPlayer : MonoBehaviour
         currentBloods = bloods;
         UpdateUI();
         anim = GetComponent<Animator>();
+        playerBloodEffect.Stop();
     }
 
     private void Update()
@@ -166,6 +168,7 @@ public class StatusPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("KnifeEnemy"))
         {
             currentHp -= 50;
+            playerBloodEffect.Play();
             UpdateUI();
         }
         if (other.gameObject.CompareTag("DiamondGr"))

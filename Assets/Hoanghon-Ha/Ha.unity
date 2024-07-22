@@ -988,6 +988,10 @@ PrefabInstance:
       propertyPath: playerStatus
       value: 
       objectReference: {fileID: 107859451}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 995713249}
     - target: {fileID: 4151202154603011004, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1077,12 +1081,16 @@ PrefabInstance:
       value: ShowWeaponsCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: maxHp
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 1833583633}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: baseMoney
-      value: 2000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: maxStamina
@@ -1440,11 +1448,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.455576
+      value: 28.49
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.892506
+      value: -25.14
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4131,7 +4139,7 @@ MonoBehaviour:
   m_Follow: {fileID: 107859442}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4.17
+    OrthographicSize: 2.93
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4157,7 +4165,7 @@ Transform:
   m_GameObject: {fileID: 995713247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.1886663, y: 1.3678002, z: -10}
+  m_LocalPosition: {x: -6.409111, y: 0.94620013, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5175,6 +5183,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 34241762}
     m_Modifications:
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 107859442}
+    - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 107859451}
@@ -5776,7 +5788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897622531258453849, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.546089
+      value: 14.44
       objectReference: {fileID: 0}
     - target: {fileID: 4897622531258453849, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6479,7 +6491,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.17
+  orthographic size: 2.93
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6504,7 +6516,7 @@ Transform:
   m_GameObject: {fileID: 1693999666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3676195, y: 1.3538756, z: -10}
+  m_LocalPosition: {x: -5.5802164, y: 0.9421084, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8167,11 +8179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8642248911490275694, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.099009
+      value: 12.11
       objectReference: {fileID: 0}
     - target: {fileID: 8642248911490275694, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.3185
+      value: -27.38
       objectReference: {fileID: 0}
     - target: {fileID: 8642248911490275694, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_LocalPosition.z

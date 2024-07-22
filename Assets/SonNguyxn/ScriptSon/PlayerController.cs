@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 
     public void Ultimate()
     {
-        if (playerStatus.currentStamina == 100)
+        if (playerStatus.currentStamina >= 100)
         { 
             if (Input.GetKeyDown(KeyCode.X))
             {
