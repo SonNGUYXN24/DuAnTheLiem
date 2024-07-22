@@ -28021,6 +28021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6064531817609949294, guid: cfff0c40b07dc6b4da47c7c102fe4d5e, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9139744399404969763, guid: cfff0c40b07dc6b4da47c7c102fe4d5e, type: 3}
       propertyPath: backgroundMusic
       value: 

@@ -145,7 +145,7 @@ public class Boss : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Explosion"))
         {
-            currentHPEnemy -= 500;
+            currentHPEnemy -= 1000;
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {
