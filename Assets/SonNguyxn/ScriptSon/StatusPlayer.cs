@@ -188,7 +188,7 @@ public class StatusPlayer : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Dead"))
         {
-            currentHp += 100000000;
+            currentHp -= 100000000;
             UpdateUI();
         }
     }
