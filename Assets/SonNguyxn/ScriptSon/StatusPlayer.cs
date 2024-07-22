@@ -186,6 +186,10 @@ public class StatusPlayer : MonoBehaviour
             currentCoins += 1;
             UpdateUI();
         }
+        if (other.gameObject.CompareTag("Dead"))
+        {
+            gameOver.SetActive(true);
+        }
     }
     /*public void CollectItem()
     {

@@ -20,6 +20,7 @@ TagManager:
   - FxTemporaire
   - Ultimate
   - Explosion
+  - Dead
   layers:
   - Default
   - TransparentFX
