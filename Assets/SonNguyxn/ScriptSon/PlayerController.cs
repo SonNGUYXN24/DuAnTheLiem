@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
         virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định
         isUltimating = false;
         isCameraZoomed = false;
-        currentSpeed += 6f;
+        currentSpeed += 4f;
     }
     private IEnumerator ResetVirtualCamera2()
     {

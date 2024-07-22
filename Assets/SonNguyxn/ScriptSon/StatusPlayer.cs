@@ -188,7 +188,8 @@ public class StatusPlayer : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Dead"))
         {
-            gameOver.SetActive(true);
+            currentHp += 100000000;
+            UpdateUI();
         }
     }
     /*public void CollectItem()
