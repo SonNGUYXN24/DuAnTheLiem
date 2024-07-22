@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5585312, g: 0.80992115, b: 0.990975, a: 1}
+  m_IndirectSpecularColor: {r: 0.5590147, g: 0.8095578, b: 0.99108803, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3782,6 +3782,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &184224916 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2089558520652994741, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+  m_PrefabInstance: {fileID: 2144758683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &186083489
 GameObject:
   m_ObjectHideFlags: 0
@@ -46618,6 +46623,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 695715102}
     - target: {fileID: 4280563877728354849, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: Knifedamage
+      value: 
+      objectReference: {fileID: 1974146700}
+    - target: {fileID: 4280563877728354849, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 695715101}
@@ -68452,6 +68461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 695715102}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: Knifedamage
+      value: 
+      objectReference: {fileID: 2100840294}
+    - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: fireBallHit
       value: 
       objectReference: {fileID: 1383887008}
@@ -79356,6 +79369,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7372094172137304872, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590911902034480864, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_Intensity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
@@ -135566,6 +135583,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2605941636045731368, guid: c4d4a2cee90bf9b44baaefb289c7be97, type: 3}
   m_PrefabInstance: {fileID: 1972307435}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1974146700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6512708209885874171, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+  m_PrefabInstance: {fileID: 534349850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1974895993
 GameObject:
   m_ObjectHideFlags: 0
@@ -138642,6 +138664,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &2100840294 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2089558520652994741, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+  m_PrefabInstance: {fileID: 1383887007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103268306
 GameObject:
   m_ObjectHideFlags: 0
@@ -139427,7 +139454,7 @@ PrefabInstance:
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: Knifedamage
       value: 
-      objectReference: {fileID: 1355631405}
+      objectReference: {fileID: 184224916}
     - target: {fileID: 1095429434166734593, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: healthSlider
       value: 
