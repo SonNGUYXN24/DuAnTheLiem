@@ -21,6 +21,8 @@ TagManager:
   - Ultimate
   - Explosion
   - Dead
+  - BossSkill1
+  - BossSkill2
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class Boss : MonoBehaviour
 {
@@ -29,8 +30,12 @@ public class Boss : MonoBehaviour
     public ParticleSystem fireBallHit;
     public ParticleSystem bloodEffect;
     public ParticleSystem swordEffect;
+    public ParticleSystem skill1;
+    public ParticleSystem skill2;
     private bool isDead;
-
+    public BoxCollider2D skill1Trigger;
+    public BoxCollider2D skill2Trigger;
+    public TextMeshProUGUI hpBossText;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -109,6 +114,19 @@ public class Boss : MonoBehaviour
         {
          
             animator.SetBool("ismove", false);
+        }
+    }
+    public void Skill1()
+    {
+        if(currentHPEnemy == 70000)
+        {
+            skill1Trigger.enabled = true;
+            skill1.Play();
+        }
+        if(currentHPEnemy == 30000)
+        {
+            skill2Trigger.enabled = true;
+            skill2.Play();
         }
     }
     public void OnTriggerEnter2D(Collider2D collision)

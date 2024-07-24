@@ -191,6 +191,16 @@ public class StatusPlayer : MonoBehaviour
             currentHp -= 100000000;
             UpdateUI();
         }
+        if (other.gameObject.CompareTag("BossSkill1"))
+        {
+            currentHp -= 200;
+            UpdateUI();
+        }
+        if (other.gameObject.CompareTag("BossSkill2"))
+        {
+            currentHp -= 500;
+            UpdateUI();
+        }
     }
     /*public void CollectItem()
     {
