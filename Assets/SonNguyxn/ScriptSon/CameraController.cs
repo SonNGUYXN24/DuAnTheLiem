@@ -4,47 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public AudioSource backgroundMusic;
-    public AudioSource bossBattle;
-    public string playerTag = "Player"; // Tag của Player (hãy đảm bảo đúng Tag)
-    public float triggerDistance = 1f; // Khoảng cách để kích hoạt âm thanh
-    private bool bossBattlePlaying = false; // Biến để kiểm tra xem âm thanh bossBattle đang phát hay không
+    public AudioSource bossBattleMusic;
+    private bool inBossBattle = false; // Biến để kiểm tra xem đang trong trạng thái Boss Battle hay không
+    public GameObject hpBossCanvas;
 
-    private void Update()
+    private void Start()
     {
-        // Kiểm tra xem có GameObject nào có Tag "Player" ở gần không
-        GameObject player = GameObject.FindGameObjectWithTag(playerTag);
-        if (player != null)
+        bossBattleMusic.Stop();
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BossBattle"))
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-            if (distanceToPlayer <= triggerDistance)
+            if (!inBossBattle)
             {
-                if (!bossBattlePlaying)
-                {
-                    bossBattle.Play();
-                    bossBattlePlaying = true;
-                    backgroundMusic.Stop();
-                }
-            }
-            else
-            {
-                if (bossBattlePlaying)
-                {
-                    bossBattle.Stop();
-                    bossBattlePlaying = false;
-                    backgroundMusic.Play();
-                }
-            }
-        }
-        else
-        {
-            // Nếu không tìm thấy GameObject với Tag "Player," tiếp tục phát nhạc background
-            if (bossBattlePlaying)
-            {
-                bossBattle.Stop();
-                bossBattlePlaying = false;
-                backgroundMusic.Play();
+                bossBattleMusic.Play();
+                hpBossCanvas.SetActive(true);
+                inBossBattle = true;
             }
         }
     }

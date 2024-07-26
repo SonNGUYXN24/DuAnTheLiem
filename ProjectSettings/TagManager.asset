@@ -23,6 +23,7 @@ TagManager:
   - Dead
   - BossSkill1
   - BossSkill2
+  - BossBattle
   layers:
   - Default
   - TransparentFX

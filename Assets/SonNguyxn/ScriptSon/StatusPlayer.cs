@@ -167,7 +167,7 @@ public class StatusPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("KnifeEnemy"))
         {
-            currentHp -= 30;
+            currentHp -= 50;
             playerBloodEffect.Play();
             UpdateUI();
         }
@@ -191,15 +191,31 @@ public class StatusPlayer : MonoBehaviour
             currentHp -= 100000000;
             UpdateUI();
         }
-        if (other.gameObject.CompareTag("BossSkill1"))
+        if (other.gameObject.CompareTag("BossSkill1") || other.gameObject.CompareTag("BossSkill2"))
+        {
+            if (!inSKillBoss)
+            {
+                StartCoroutine(ApplyContinuousDamage());
+            }
+        }
+    }
+    private bool inSKillBoss = false;
+    private IEnumerator ApplyContinuousDamage()
+    {
+        inSKillBoss = true;
+        while (currentHp > 0)
         {
             currentHp -= 200;
             UpdateUI();
+            yield return new WaitForSeconds(0.5f);
         }
-        if (other.gameObject.CompareTag("BossSkill2"))
+        inSKillBoss = false;
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BossSkill1") || other.gameObject.CompareTag("BossSkill2"))
         {
-            currentHp -= 500;
-            UpdateUI();
+            inSKillBoss = false;
         }
     }
     /*public void CollectItem()

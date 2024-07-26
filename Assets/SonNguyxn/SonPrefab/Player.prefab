@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1807094596908898195
 Transform:
   m_ObjectHideFlags: 0
@@ -899,6 +899,7 @@ GameObject:
   - component: {fileID: 715979587376656655}
   - component: {fileID: 7049505341964794503}
   - component: {fileID: 4810272560061106294}
+  - component: {fileID: 4832374615795590341}
   - component: {fileID: 589308077589001363}
   m_Layer: 5
   m_Name: MagicRing
@@ -965,6 +966,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4832374615795590341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894015909753810178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58de654385d29544bb7e0782d7987adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicRingCanvas: {fileID: 5707849477482957672}
+  statusPlayer: {fileID: 7119317602519469150}
 --- !u!114 &589308077589001363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,6 +1653,7 @@ GameObject:
   - component: {fileID: 3813205149330038222}
   - component: {fileID: 9049048754290696048}
   - component: {fileID: 574516776098186602}
+  - component: {fileID: 7145715073165873891}
   - component: {fileID: 2051006523317380337}
   m_Layer: 5
   m_Name: Helmet
@@ -1704,6 +1720,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7145715073165873891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119114026648229561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588deb13557268742b05cf618d52acd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  helmetCanvas: {fileID: 3966821261945775527}
+  statusPlayer: {fileID: 7119317602519469150}
 --- !u!114 &2051006523317380337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5497,7 +5527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.027893, y: 0}
+  m_AnchoredPosition: {x: -10, y: 10}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6056805478425416371
@@ -5528,7 +5558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60a9b6147b6e03c4d998f0b4e982216a, type: 3}
+  m_Sprite: {fileID: 106342419, guid: affb473b5b2574349a7e37655642d6f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7590,7 +7620,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -7598,7 +7628,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1330449249
+  m_SortingLayerID: 0
   m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!114 &508482973952811383
@@ -9115,6 +9145,7 @@ GameObject:
   - component: {fileID: 2623950038142655921}
   - component: {fileID: 4098293197660671121}
   - component: {fileID: 7119317602519469150}
+  - component: {fileID: 7813042991692777960}
   - component: {fileID: 9078373465757521403}
   - component: {fileID: 6425231751203327099}
   - component: {fileID: 6416020881298878184}
@@ -9240,7 +9271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  jumpSpeed: 5
+  jumpSpeed: 6
   currentSpeed: 0
   dodgeSpeed: 15
   dodgeDirection: 0.1
@@ -9254,13 +9285,13 @@ MonoBehaviour:
   skill1Sound: {fileID: 8300000, guid: e444d2b0bb62ff442818fa3858f82b6a, type: 3}
   ultimateSound: {fileID: 8300000, guid: 395cdcfb18e51ad479a985d63a12df74, type: 3}
   explosionSound: {fileID: 8300000, guid: c85295870f036b342915b53203f77269, type: 3}
-  virtualCamera: {fileID: 6259252913420901492}
+  virtualCamera: {fileID: 0}
   ultimateEffect: {fileID: 4967881669888316938}
   explosionEffect: {fileID: 1289591416449449725}
   ultimateTrigger: {fileID: 2074584295814563210}
   explosionTrigger: {fileID: 1229764988427985904}
   playerStatus: {fileID: 7119317602519469150}
-  climbSpeed: 0
+  climbSpeed: 5
   blockCollider: {fileID: 3672617230852510529}
   fireballPrefab: {fileID: 108477544043595364, guid: bd5228b916a54f24d8b100e2af328b9e, type: 3}
   fireballSpeed: 25
@@ -9290,25 +9321,39 @@ MonoBehaviour:
   anim: {fileID: 2623950038142655921}
   gameOver: {fileID: 0}
   bloodButton: {fileID: 5738613794361353323}
-  maxHp: 100
-  maxStamina: 100
+  maxHp: 200
+  maxStamina: 200
   currentMoney: 0
   currentHp: 0
   currentStamina: 0
   currentDamage: 0
   currentArmor: 0
   baseDamage: 100
-  baseMoney: 2000
+  baseMoney: 2000000
   timeSinceLastHeal: 0
-  diamondGreen: 0
-  diamondPurple: 0
-  coins: 0
-  bloods: 10
+  diamondGreen: 10
+  diamondPurple: 10
+  coins: 10
+  bloods: 30
   currentCoins: 0
   currentdiamondG: 0
   currentdiamondP: 0
   currentBloods: 0
   playerBloodEffect: {fileID: 2213030770978208737}
+--- !u!114 &7813042991692777960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146825688520943078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: babe1c3e31125ff4390e917d825a814a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossBattleMusic: {fileID: 0}
+  hpBossCanvas: {fileID: 0}
 --- !u!50 &9078373465757521403
 Rigidbody2D:
   serializedVersion: 4
@@ -12301,7 +12346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -521.00024, y: 432}
+  m_AnchoredPosition: {x: -521.00024, y: 463}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6621482740646434415

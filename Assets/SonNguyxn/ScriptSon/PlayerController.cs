@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded; // Kiểm tra xem người chơi có đang đứng trên mặt đất không
     public GameObject fireballPrefab; // Prefab của quả cầu lửa
     [SerializeField] private float fireballSpeed = 2.20f; // Tốc độ bắn của quả cầu lửa
+    private bool canJump = true; // Thêm biến kiểm tra có thể nhảy lần thứ hai hay không
+    private bool isJumping = false; // Biến kiểm tra đang nhảy
+    private float jumpCooldown = 0.2f; // Thời gian chờ giữa các lần nhảy
+    private float lastJumpTime; // Thời điểm cuối cùng nhảy
+    private int jumpCount = 2; // Số lần nhảy tối đa
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         JumpAndCheckGround();
-        Dodge();
+        //Dodge();
         Block();
         Attack();
         Climb();
@@ -118,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 explosionEffect.Play();
                 // Đợi thêm 0.5 giây
                 StartCoroutine(ResetVirtualCamera2());
+                
             }
         }
         else
@@ -127,9 +133,9 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator WaitSkill()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.85f);
     }
-    public void Dodge()
+    /*public void Dodge()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
         {
@@ -150,7 +156,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsRolling",false); // Đặt lại IsDodging
             isDodging = false;
         }
-    }
+    }*/
     public void Attack()
     {
         if (Input.GetKey(KeyCode.F))
@@ -287,22 +293,43 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsBlocking", false);
         }
     }
+
     public void JumpAndCheckGround()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            audioSource.PlayOneShot(jumpSound);
-            anim.SetBool("IsJumping", true);
+            if (isGrounded && jumpCount > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                audioSource.PlayOneShot(jumpSound);
+                anim.SetBool("IsJumping", true);
+                jumpCount--;
+            }
+            else if (!isGrounded && jumpCount > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                anim.SetBool("IsJumping", false); // Kết thúc animation nhảy
+                anim.SetBool("IsRolling", true); // Bắt đầu animation lăn
+                jumpCount--;
+                StartCoroutine(WaitToJump());
+            }
         }
     }
-
+    private IEnumerator WaitToJump()
+    {
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool("IsRolling", false);
+        anim.SetBool("IsJumping", true);
+    }
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true; // Khi va chạm với mặt đất, đánh dấu là đang đứng trên mặt đất
-            anim.SetBool("IsJumping", false); // Khi chạm đất, animation nhảy là false
+            isGrounded = true;
+            anim.SetBool("IsStaying", true);
+            anim.SetBool("IsJumping", false);
+            anim.SetBool("IsRolling", false);
+            jumpCount = 2; // Reset số lần nhảy khi đặt chân xuống mặt đất
         }
     }
 
@@ -310,7 +337,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false; // Khi rời khỏi mặt đất, đánh dấu không đứng trên mặt đất
+            isGrounded = false;
         }
     }
 

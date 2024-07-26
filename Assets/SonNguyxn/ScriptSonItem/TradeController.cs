@@ -76,6 +76,20 @@ public class TradeController : MonoBehaviour
         }
         // Có thể thêm xử lý khi không có đủ Coin ở đây
     }
+    public void TradeBlood()
+    {
+        if(statusPlayer.currentMoney >= 500)
+        {
+            statusPlayer.currentMoney -= 500;
+            statusPlayer.currentBloods += 1;
+            Update();
+            statusPlayer.UpdateUI();
+        }
+        else
+        {
+            warning2Canvas.SetActive(true);
+        }
+    }
     public void ReturnTradeCanvas()
     {
         warning2Canvas.SetActive(false);

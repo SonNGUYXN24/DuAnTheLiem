@@ -136,6 +136,7 @@ public class BuyController : MonoBehaviour
         {
             chiecNhanCost = itemCost;
             statusPlayer.currentMoney -= itemCost;
+            ringMagic.SetActive(true);
             // Thêm logic để cấp phát trang bị cho người chơi ở đây
             statusPlayer.UpdateUI(); // Cập nhật giao diện trong StatusPlayer
             UpdateMoneyDisplay();

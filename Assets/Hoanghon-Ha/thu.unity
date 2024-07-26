@@ -58443,16 +58443,24 @@ PrefabInstance:
       value: GameOverCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4804958835485317990, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804958835485317990, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2113616898}
     - target: {fileID: 4804958835485317990, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: SetLastScene
       objectReference: {fileID: 0}
     - target: {fileID: 4804958835485317990, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ContinueController1, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804958835485317990, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: thu
       objectReference: {fileID: 0}
     - target: {fileID: 8295327752667539160, guid: dbf7c15b2d5ec8947a932b02898bf8e3, type: 3}
       propertyPath: m_Pivot.x
@@ -63290,7 +63298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2063f354cd61b0841935c5dd09fd15b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastSceneName: 
 --- !u!4 &2113616899
 Transform:
   m_ObjectHideFlags: 0

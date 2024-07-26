@@ -1732,6 +1732,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604476052}
   m_CullTransparentMesh: 1
+--- !u!1 &606824386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606824388}
+  - component: {fileID: 606824387}
+  m_Layer: 0
+  m_Name: ContinueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &606824387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606824386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2063f354cd61b0841935c5dd09fd15b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &606824388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606824386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -406.90442, y: 5.237946, z: -0.7841157}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608346250
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,9 +6146,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2063f354cd61b0841935c5dd09fd15b5, type: 3}
+      - m_Target: {fileID: 606824387}
         m_TargetAssemblyTypeName: ContinueController1, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: ContinueToLastScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7336,3 +7380,4 @@ SceneRoots:
   - {fileID: 1159464208}
   - {fileID: 1493755130}
   - {fileID: 470742418}
+  - {fileID: 606824388}

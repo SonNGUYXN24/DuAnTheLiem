@@ -5,23 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class ContinueController1 : MonoBehaviour
 {
-    public string lastSceneName; // Lưu tên của Scene trước đó
+    private static string lastSceneName; // Biến static để lưu tên cảnh cuối cùng
 
-    private void Update()
+    // Gọi phương thức này khi chuyển đến cảnh mới
+    public static void SetLastScene(string sceneName)
     {
-        // Lấy tên của Scene hiện tại
-        lastSceneName = SceneManager.GetActiveScene().name;
-    }
-
-    public void GoToMainMenu()
-    {
-        // Load Scene MainMenu
+        lastSceneName = sceneName;
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 
-    public void Continue()
+    // Gọi phương thức này để tiếp tục đến cảnh cuối cùng đã thăm
+    public static void ContinueToLastScene()
     {
-        // Load lại Scene trước đó (Scene4 trong trường hợp này)
-        SceneManager.LoadScene(lastSceneName);
+        if (!string.IsNullOrEmpty(lastSceneName))
+        {
+            SceneManager.LoadScene(lastSceneName);
+            // Khôi phục thời gian chạy của game
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Debug.LogWarning("Không có cảnh cuối cùng được ghi lại. Không thể tiếp tục.");
+        }
     }
 }

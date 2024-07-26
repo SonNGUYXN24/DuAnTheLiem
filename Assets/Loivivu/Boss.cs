@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
 {
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
     public float detectionRange = 15f;  // Phạm vi phát hiện người chơi
+    private bool inSkillCooldown = false; // Biến kiểm tra xem đang trong thời gian cooldown của skill hay không
     private float stopRange = 0.5f;
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
@@ -36,6 +37,10 @@ public class Boss : MonoBehaviour
     public BoxCollider2D skill1Trigger;
     public BoxCollider2D skill2Trigger;
     public TextMeshProUGUI hpBossText;
+    public AudioSource bossAudio;
+    public AudioClip bossSkill1;
+    public AudioClip bossSkill2;
+    public CameraController cameraController;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -47,24 +52,26 @@ public class Boss : MonoBehaviour
     public void UpdateHP()
     {
         healthSlider.value = (float)currentHPEnemy / maxHP;
+        hpBossText.text = $"{currentHPEnemy}/{maxHP}";
     }
     // Update is called once per frame
     void Update()
     {
         TimeAttack();
         followPlayer();
+        Skill();
+        if(currentHPEnemy <=0)
+        {
+            cameraController.hpBossCanvas.SetActive(false);
+        }
+
     }
     void TimeAttack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
         if (distanceToPlayer < detectionRangeAttack)
         {
-
-           
-
             timeAttack -= Time.deltaTime;
-
-           
 
                 if (timeAttack <= 0)
                 {
@@ -74,8 +81,14 @@ public class Boss : MonoBehaviour
                     Destroy(oneSkill, 0.1f);
                     timeAttack = TimeAttackRate;
                 }
-            
-           
+        }
+        else
+        {
+            animator.SetBool("isidiel", false);
+        }
+        if(currentHPEnemy <=0)
+        {
+            cameraController.bossBattleMusic.Stop();
         }
     }
     private void followPlayer()//thấy player thì chạy theo
@@ -89,7 +102,7 @@ public class Boss : MonoBehaviour
             {
 
                 Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
-                rb.velocity = moveDirection * 5f;// Tốc độ di chuyển
+                rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
 
                 animator.SetBool("ismove", true);
 
@@ -116,18 +129,41 @@ public class Boss : MonoBehaviour
             animator.SetBool("ismove", false);
         }
     }
-    public void Skill1()
+    public void Skill()
     {
-        if(currentHPEnemy == 70000)
+        if (!inSkillCooldown)
         {
-            skill1Trigger.enabled = true;
-            skill1.Play();
+            if (currentHPEnemy <= 70000)
+            {
+                skill1Trigger.enabled = true;
+                bossAudio.PlayOneShot(bossSkill1);
+                StartCoroutine(ActivateSkill(skill1, 5f)); // Kích hoạt Skill1 trong 5 giây
+            }
+            if (currentHPEnemy <= 30000)
+            {
+                skill1Trigger.enabled = false;
+                skill2Trigger.enabled = true;
+                bossAudio.PlayOneShot(bossSkill2);
+                StartCoroutine(ActivateSkill(skill2, 5f)); // Kích hoạt Skill2 trong 5 giây
+            }
+            inSkillCooldown = true;
+            StartCoroutine(SkillCooldown());
         }
-        if(currentHPEnemy == 30000)
-        {
-            skill2Trigger.enabled = true;
-            skill2.Play();
-        }
+    }
+
+    private IEnumerator ActivateSkill(ParticleSystem skill, float duration)
+    {
+        skill.Play();
+        yield return new WaitForSeconds(duration);
+        skill.Stop();
+        skill1Trigger.enabled = false; // Tắt trigger sau khi kết thúc skill
+        skill2Trigger.enabled = false; // Tắt trigger sau khi kết thúc skill
+    }
+
+    private IEnumerator SkillCooldown()
+    {
+        yield return new WaitForSeconds(2);
+        inSkillCooldown = false;
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
