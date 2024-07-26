@@ -162,7 +162,7 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SkillCooldown()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
         inSkillCooldown = false;
     }
     public void OnTriggerEnter2D(Collider2D collision)
