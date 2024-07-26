@@ -203,13 +203,10 @@ public class StatusPlayer : MonoBehaviour
     private IEnumerator ApplyContinuousDamage()
     {
         inSKillBoss = true;
-        while (currentHp > 0)
-        {
-            currentHp -= 200;
-            UpdateUI();
-            yield return new WaitForSeconds(0.5f);
-        }
-        inSKillBoss = false;
+         currentHp -= 200;
+         UpdateUI();
+         yield return new WaitForSeconds(0.5f);
+        
     }
     public void OnTriggerExit2D(Collider2D other)
     {

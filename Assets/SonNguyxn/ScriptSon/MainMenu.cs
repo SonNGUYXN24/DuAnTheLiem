@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     {
         // Chuyển đến Scene intro
         SceneManager.LoadScene("StoryGame");
+        Time.timeScale = 1.0f;
     }
     public void LoadResume()
     {
