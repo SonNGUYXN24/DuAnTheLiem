@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
     public GameObject statusCanvas;
     public GameObject itemCanvas;
     public GameObject weaponsCanvas;
+    public GameObject pauseController;
     private bool inItems = false;
     private bool inWeapon = false;
     private bool inStatus = false;
@@ -22,6 +23,7 @@ public class InventoryController : MonoBehaviour
         {
             inventoryCanvas.SetActive(true);
             itemCanvas.SetActive(true);
+            pauseController.SetActive(false);
             inItems = true;
             inInventory = true;
         }
@@ -30,6 +32,7 @@ public class InventoryController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             HideAllCanvases();
+            pauseController.SetActive(true);
         }
     }
 

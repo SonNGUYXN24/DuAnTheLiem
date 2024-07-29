@@ -7,6 +7,7 @@ public class StoreController : MonoBehaviour
     public GameObject storeCanvas; // Tham chiếu đến canvas Store
     public GameObject buyCanvas;
     public GameObject tradeCanvas;
+    public GameObject pauseController;
     void Update()
     {
         // Hiển thị canvas khi người chơi nhấn phím "E"
@@ -14,6 +15,7 @@ public class StoreController : MonoBehaviour
         {
             storeCanvas.SetActive(true);
             buyCanvas.SetActive(true);
+            pauseController.SetActive(false);
         }
 
         // Đóng canvas khi người chơi nhấn phím "ESC"
