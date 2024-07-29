@@ -187,6 +187,7 @@ MonoBehaviour:
   storeCanvas: {fileID: 3520567403022298366}
   buyCanvas: {fileID: 8487485368366736135}
   tradeCanvas: {fileID: 4244345362926638683}
+  pauseController: {fileID: 0}
 --- !u!1 &334488137493277234
 GameObject:
   m_ObjectHideFlags: 0
