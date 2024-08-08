@@ -62254,6 +62254,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2213030770351409735, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213030770351409735, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -274397939
+      objectReference: {fileID: 0}
     - target: {fileID: 2422347663988210536, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -62303,12 +62311,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 964477482}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f0abdf5700b741469e5a6f3ea688128, type: 3}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: baseDamage
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: maxStamina
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1898739431}
+    - target: {fileID: 7558238481213869210, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558238481213869210, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -274397939
       objectReference: {fileID: 0}
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -63228,6 +63252,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1898739431 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6416020881298878184, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+  m_PrefabInstance: {fileID: 1816545091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909925598
 GameObject:
   m_ObjectHideFlags: 0

@@ -70690,9 +70690,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2057628776}
     - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6f0abdf5700b741469e5a6f3ea688128, type: 3}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: maxStamina
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 7119317602519469150, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1480772068}
     - target: {fileID: 8379530001711099377, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -457.5792
@@ -70749,6 +70757,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1480772068 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6416020881298878184, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+  m_PrefabInstance: {fileID: 1480772066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1483550289
 PrefabInstance:
   m_ObjectHideFlags: 0

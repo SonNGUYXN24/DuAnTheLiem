@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private float jumpCooldown = 0.2f; // Thời gian chờ giữa các lần nhảy
     private float lastJumpTime; // Thời điểm cuối cùng nhảy
     private int jumpCount = 2; // Số lần nhảy tối đa
+    public float attackCooldown = 0.07f; // Thời gian delay giữa các lần tấn công
+    private bool isCooldown = false; // Trạng thái cooldown
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -135,61 +137,40 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.85f);
     }
-    /*public void Dodge()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging)
-        {
-            // Người chơi nhấn phím Shift và không đang trong trạng thái lộn
-
-            // Kích hoạt IsDodging (nếu bạn đã đặt trigger này trong animator)
-            anim.SetBool("IsRolling", true);
-           
-            // Thay đổi vận tốc theo trục X để thực hiện lộn
-            rb.velocity = new Vector2(dodgeDirection * dodgeSpeed, rb.velocity.y);
-
-            // Đánh dấu là đang lộn
-            isDodging = true;
-        }
-        else
-        {
-            // Người chơi không nhấn phím Shift hoặc đang trong trạng thái lộn
-            anim.SetBool("IsRolling",false); // Đặt lại IsDodging
-            isDodging = false;
-        }
-    }*/
     public void Attack()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKey(KeyCode.F) && !isCooldown)
         {
-            // Người chơi nhấn phím F và không đang trong trạng thái tấn công
-            // và đã qua thời gian cooldown
-            // Tạo một số ngẫu nhiên để chọn animation tấn công
-            int randomAttack = UnityEngine.Random.Range(1, 4); // Chọn từ 1 đến 3
-            audioSource.PlayOneShot(swordSound);
-            // Kích hoạt trigger tấn công ngẫu nhiên (Attack1, Attack2, Attack3)
-            anim.SetBool($"Attack{randomAttack}", true);
-            anim.SetBool("IsStaying", false);
-            // Kích hoạt BoxCollider2D của thanh kiếm
-            swordCollider.enabled = true;
-            isAttacking = true;
-
+            StartCoroutine(PerformAttack());
         }
         else
         {
             // Người chơi không nhấn phím F hoặc đang trong trạng thái tấn công
             // hoặc chưa qua thời gian cooldown
-            // Tạo một số ngẫu nhiên để chọn animation tấn công
-            // Kích hoạt trigger tấn công ngẫu nhiên (Attack1, Attack2, Attack3)
             anim.SetBool($"Attack1", false);
             anim.SetBool($"Attack2", false);
             anim.SetBool($"Attack3", false);
-            //anim.ResetTrigger("IsAttacking"); // Đặt lại trigger IsAttacking
             isAttacking = false;
-            // Vô hiệu hóa BoxCollider2D của thanh kiếm
             swordCollider.enabled = false;
-            // Kích hoạt trigger IsStaying
             anim.SetBool("IsStaying", true);
         }
+    }
+
+    private IEnumerator PerformAttack()
+    {
+        // Người chơi nhấn phím F và không đang trong trạng thái tấn công
+        // và đã qua thời gian cooldown
+        isCooldown = true; // Bắt đầu cooldown
+        int randomAttack = UnityEngine.Random.Range(1, 4); // Chọn từ 1 đến 3
+        audioSource.PlayOneShot(swordSound);
+        anim.SetBool($"Attack{randomAttack}", true);
+        anim.SetBool("IsStaying", false);
+        swordCollider.enabled = true;
+        isAttacking = true;
+
+        yield return new WaitForSeconds(attackCooldown); // Đợi thời gian cooldown
+
+        isCooldown = false; // Kết thúc cooldown
     }
 
     public void Ultimate()
