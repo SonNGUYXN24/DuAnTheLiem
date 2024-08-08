@@ -24,6 +24,7 @@ TagManager:
   - BossSkill1
   - BossSkill2
   - BossBattle
+  - LastSkill
   layers:
   - Default
   - TransparentFX

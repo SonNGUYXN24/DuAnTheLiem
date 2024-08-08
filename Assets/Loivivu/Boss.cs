@@ -37,10 +37,13 @@ public class Boss : MonoBehaviour
     public BoxCollider2D skill1Trigger;
     public BoxCollider2D skill2Trigger;
     public TextMeshProUGUI hpBossText;
+    public GameObject lastSkillText;
     public AudioSource bossAudio;
     public AudioClip bossSkill1;
     public AudioClip bossSkill2;
     public CameraController cameraController;
+    public GameObject lastSkillController;
+    public ParticleSystem lastSkillEffect;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -62,10 +65,21 @@ public class Boss : MonoBehaviour
         Skill();
         if(currentHPEnemy <=0)
         {
+            bossAudio.Stop();
             cameraController.hpBossCanvas.SetActive(false);
         }
-
+        skillLast();
     }
+
+    public void skillLast()
+    {
+        if(currentHPEnemy <=30000 && currentHPEnemy > 0)
+        {
+            lastSkillText.SetActive(true);
+            lastSkillController.SetActive(true);
+        }
+    }
+
     void TimeAttack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
@@ -84,7 +98,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isidiel", false);
+            animator.SetBool("isidiel", true);
         }
         if(currentHPEnemy <=0)
         {
@@ -133,13 +147,13 @@ public class Boss : MonoBehaviour
     {
         if (!inSkillCooldown)
         {
-            if (currentHPEnemy <= 70000)
+            if (currentHPEnemy <= 70000 && currentHPEnemy > 0)
             {
                 skill1Trigger.enabled = true;
                 bossAudio.PlayOneShot(bossSkill1);
                 StartCoroutine(ActivateSkill(skill1, 5f)); // Kích hoạt Skill1 trong 5 giây
             }
-            if (currentHPEnemy <= 30000)
+            if (currentHPEnemy <= 30000 && currentHPEnemy > 0)
             {
                 skill1Trigger.enabled = false;
                 skill2Trigger.enabled = true;
@@ -206,14 +220,39 @@ public class Boss : MonoBehaviour
                 StartCoroutine(DeadEffect());
             }
         }
+        if (collision.gameObject.CompareTag("LastSkill"))
+        {
+            detectionRange -= 15f;
+            lastSkillEffect.Play();
+            bossAudio.Stop();
+            StartCoroutine(WaitLastSkill());
+            currentHPEnemy -= 1000000;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
     }
-    private IEnumerator  DeadEffect()
+    private IEnumerator WaitLastSkill()
+    {
+        yield return new WaitForSeconds(2f);
+        // Thêm các hành động khác nếu cần sau khi chờ 2.5 giây
+    }
+
+    private IEnumerator DeadEffect()
     {
         isDead = true;
         deadEffect.Play();
         bloodEffect.Play();
-        yield return new WaitForSeconds(3f);
-        Destroy(gameObject);
+     
+        yield return new WaitForSeconds(2f);
+        lastSkillText.SetActive(false);
+        
+        yield return new WaitForSeconds(1.5f);
+        
+        lastSkillController.SetActive(false);
         portalEnd.SetActive(true);
-    }    
+        Destroy(gameObject);
+    }
 }

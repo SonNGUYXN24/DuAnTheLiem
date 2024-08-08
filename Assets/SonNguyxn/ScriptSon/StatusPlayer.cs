@@ -45,6 +45,8 @@ public class StatusPlayer : MonoBehaviour
     public int currentdiamondP;
     public int currentBloods;
     public ParticleSystem playerBloodEffect;
+    public AudioSource audioSource;
+    public AudioClip hitSound;
     private void Start()
     {
         currentHp = maxHp;
@@ -105,11 +107,8 @@ public class StatusPlayer : MonoBehaviour
         // Kích hoạt animation IsDeathing khi HP về 0
         if (currentHp <= 0)
         {
-            anim.SetBool("IsDeathing", true);
-            gameObject.SetActive(false);
-            gameOver.SetActive(true);
-            // Tạm dừng game
-            Time.timeScale = 0f;
+
+            StartCoroutine(deadCoolDown());
         }
         else
         {
@@ -117,6 +116,15 @@ public class StatusPlayer : MonoBehaviour
             gameOver.SetActive(false);
         }
         
+    }
+    private IEnumerator deadCoolDown()
+    {
+        anim.SetBool("IsDeathing", true);
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
+        gameOver.SetActive(true);
+        // Tạm dừng game
+        Time.timeScale = 0f;
     }
 
     // Hàm giảm Stamina
@@ -168,6 +176,7 @@ public class StatusPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("KnifeEnemy"))
         {
             currentHp -= 50;
+            audioSource.PlayOneShot(hitSound);
             playerBloodEffect.Play();
             UpdateUI();
         }
@@ -188,6 +197,7 @@ public class StatusPlayer : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Dead"))
         {
+            audioSource.PlayOneShot(hitSound);
             currentHp -= 100000000;
             UpdateUI();
         }
@@ -203,7 +213,8 @@ public class StatusPlayer : MonoBehaviour
     private IEnumerator ApplyContinuousDamage()
     {
         inSKillBoss = true;
-         currentHp -= 200;
+        audioSource.PlayOneShot(hitSound);
+        currentHp -= 200;
          UpdateUI();
          yield return new WaitForSeconds(0.5f);
         
