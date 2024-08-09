@@ -233,6 +233,24 @@ public class Boss : MonoBehaviour
                 StartCoroutine(DeadEffect());
             }
         }
+        if (collision.gameObject.CompareTag("DarkBall"))
+        {
+            currentHPEnemy -= 200; // Số lượng sát thương của DarkBall
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
+        if (collision.gameObject.CompareTag("DarkBallTrigger"))
+        {
+            currentHPEnemy -= 10000; // Số lượng sát thương của DarkBall
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(DeadEffect());
+            }
+        }
     }
     private IEnumerator WaitLastSkill()
     {

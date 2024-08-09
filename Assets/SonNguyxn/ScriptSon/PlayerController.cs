@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     public GameObject darkBallPrefab; // Prefab của DarkBall
     public float darkBallSpeed = 10f; // Tốc độ di chuyển của DarkBall
     private bool canUseDarkBall = true; // Biến kiểm tra có thể sử dụng DarkBall hay không
-    private float darkBallCooldown = 60f; // Thời gian hồi chiêu của DarkBall
+    public float darkBallCooldown = 60f; // Thời gian hồi chiêu của DarkBall
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -116,19 +116,19 @@ public class PlayerController : MonoBehaviour
         virtualCamera.Follow = darkBallTransform;
 
         // Chờ cho đến khi quả cầu DarkBall biến mất
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         // Phóng to camera lên 6f trong 0.5 giây
-        StartCoroutine(SmoothZoom(6f, 0.5f));
+        StartCoroutine(SmoothZoom(6f, 0.2f));
 
         // Chờ 0.5 giây
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         // Đặt lại camera theo Player
         virtualCamera.Follow = transform;
 
         // Thu nhỏ camera lại thành 2.93f trong 0.5 giây
-        StartCoroutine(SmoothZoom(2.93f, 0.5f));
+        StartCoroutine(SmoothZoom(2.93f, 0.3f));
     }
 
     private IEnumerator SmoothZoom(float targetSize, float duration)

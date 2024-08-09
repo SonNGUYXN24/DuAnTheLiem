@@ -6,10 +6,14 @@ public class DarkBall : MonoBehaviour
 {
     public BoxCollider2D darkBallTrigger;
     private Rigidbody2D rb;
+    public ParticleSystem darkBallEffect;
+    public AudioSource darkBallSound;
+    public AudioClip darkBallSounds;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        darkBallEffect.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,6 +22,8 @@ public class DarkBall : MonoBehaviour
         {
             // Dừng DarkBall
             rb.velocity = Vector2.zero;
+            darkBallEffect.Play();
+            darkBallSound.PlayOneShot(darkBallSounds);
 
             // Kích hoạt trigger
             StartCoroutine(ActivateTrigger());
@@ -29,7 +35,7 @@ public class DarkBall : MonoBehaviour
         darkBallTrigger.enabled = true;
 
         // Chờ 2 giây
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
 
         // Hủy đối tượng DarkBall
         Destroy(gameObject);

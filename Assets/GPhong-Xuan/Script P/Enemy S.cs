@@ -121,8 +121,14 @@ public class EnemyS : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Sword"))
         {
-            currentHPEnemy -= statusPlayer.currentDamage;
-            swordEffect.Play();
+            if (statusPlayer != null)
+            {
+                currentHPEnemy -= statusPlayer.currentDamage;
+            }
+            if (swordEffect != null)
+            {
+                swordEffect.Play();
+            }
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {
@@ -132,9 +138,11 @@ public class EnemyS : MonoBehaviour
         if (collision.gameObject.CompareTag("FireBall"))
         {
             currentHPEnemy -= 100;
-            fireBallHit.Play();
+            if (fireBallHit != null)
+            {
+                fireBallHit.Play();
+            }
             UpdateHP();
-
             if (currentHPEnemy <= 0 && !isDead)
             {
                 StartCoroutine(PlayBloodEffectAndDestroy());
@@ -167,13 +175,37 @@ public class EnemyS : MonoBehaviour
                 StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+        if (collision.gameObject.CompareTag("DarkBall"))
+        {
+            currentHPEnemy -= 200; // Số lượng sát thương của DarkBall
+            rb.velocity = Vector3.zero;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
+        if (collision.gameObject.CompareTag("DarkBallTrigger"))
+        {
+            currentHPEnemy -= 10000; // Số lượng sát thương của DarkBall
+            
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
     }
+
     private IEnumerator PlayBloodEffectAndDestroy()
     {
         isDead = true; // Đánh dấu quái vật đã chết
 
         // Phát hiệu ứng bloodEffect
-        bloodEffect.Play();
+        if (bloodEffect != null)
+        {
+            bloodEffect.Play();
+        }
 
         // Đợi một khoảng thời gian (ví dụ: 0.1 giây)
         yield return new WaitForSeconds(0.3f);

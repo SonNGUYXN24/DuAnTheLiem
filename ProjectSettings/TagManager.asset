@@ -27,6 +27,7 @@ TagManager:
   - LastSkill
   - DarkBall
   - DarkBallTrigger
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - Obstacles
   - 
   - 
   - 
@@ -78,4 +79,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 4020569357
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2024698051
     locked: 0

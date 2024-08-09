@@ -122,8 +122,14 @@ public class EnemyP : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Sword"))
         {
-            currentHPEnemy -= statusPlayer.currentDamage;
-            swordEffect.Play();
+            if (statusPlayer != null)
+            {
+                currentHPEnemy -= statusPlayer.currentDamage;
+            }
+            if (swordEffect != null)
+            {
+                swordEffect.Play();
+            }
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {
@@ -133,30 +139,11 @@ public class EnemyP : MonoBehaviour
         if (collision.gameObject.CompareTag("FireBall"))
         {
             currentHPEnemy -= 100;
-            fireBallHit.Play();
-            UpdateHP();
-
-            if (currentHPEnemy <= 0 && !isDead)
+            if (fireBallHit != null)
             {
-                StartCoroutine(PlayBloodEffectAndDestroy());
+                fireBallHit.Play();
             }
-        }
-        if (collision.gameObject.CompareTag("DarkBall"))
-        {
-            currentHPEnemy -= 1000;
-            rb.velocity = Vector2.zero;
             UpdateHP();
-
-            if (currentHPEnemy <= 0 && !isDead)
-            {
-                StartCoroutine(PlayBloodEffectAndDestroy());
-            }
-        }
-        if (collision.gameObject.CompareTag("DarkBallTrigger"))
-        {
-            currentHPEnemy -= 5000;
-            UpdateHP();
-
             if (currentHPEnemy <= 0 && !isDead)
             {
                 StartCoroutine(PlayBloodEffectAndDestroy());
@@ -189,13 +176,36 @@ public class EnemyP : MonoBehaviour
                 StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+        if (collision.gameObject.CompareTag("DarkBall"))
+        {
+            currentHPEnemy -= 200; // Số lượng sát thương của DarkBall
+            rb.velocity = Vector3.zero;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
+        if (collision.gameObject.CompareTag("DarkBallTrigger"))
+        {
+            currentHPEnemy -= 10000; // Số lượng sát thương của DarkBall
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
     }
+
     private IEnumerator PlayBloodEffectAndDestroy()
     {
         isDead = true; // Đánh dấu quái vật đã chết
 
         // Phát hiệu ứng bloodEffect
-        bloodEffect.Play();
+        if (bloodEffect != null)
+        {
+            bloodEffect.Play();
+        }
 
         // Đợi một khoảng thời gian (ví dụ: 0.1 giây)
         yield return new WaitForSeconds(0.3f);
@@ -203,4 +213,5 @@ public class EnemyP : MonoBehaviour
         // Hủy đối tượng quái vật
         Destroy(gameObject);
     }
+
 }

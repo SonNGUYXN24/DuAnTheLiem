@@ -70669,6 +70669,14 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1480772067}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: darkBallPrefab
+      value: 
+      objectReference: {fileID: 3844765810132241101, guid: 3fd5de86fdeb8b447bf5dc75456e42b9, type: 3}
+    - target: {fileID: 4098293197660671121, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: darkBallCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4151202154603011004, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: m_Camera
       value: 
