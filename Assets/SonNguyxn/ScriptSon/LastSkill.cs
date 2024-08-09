@@ -65,12 +65,12 @@ public class LastSkill : MonoBehaviour
             Debug.LogError("Player or Obstacles layer not found");
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.01f);
 
         // Xác định hướng dash
         Vector2 dashDirection = playerController.facingRight ? Vector2.right : Vector2.left;
-        StartCoroutine(SmoothDash(rb.position + dashDirection * dashDistance, 0.3f)); // Dash mượt mà trong 0.3 giây
-        StartCoroutine(SmoothZoom(7.5f, 0.3f, new Vector2(0.54f, 0.64f))); // Phóng to camera mượt mà trong 0.3 giây
+        StartCoroutine(SmoothDash(rb.position + dashDirection * dashDistance, 0.75f)); // Dash mượt mà trong 0.3 giây
+        StartCoroutine(SmoothZoom(7.5f, 0.75f, new Vector2(0.54f, 0.64f))); // Phóng to camera mượt mà trong 0.3 giây
 
         trigger.enabled = true;
         playerController.currentSpeed -= 6;
