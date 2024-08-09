@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
     private int jumpCount = 2; // Số lần nhảy tối đa
     public float attackCooldown = 0.07f; // Thời gian delay giữa các lần tấn công
     private bool isCooldown = false; // Trạng thái cooldown
+    public bool facingRight = true;
+    public GameObject darkBallPrefab; // Prefab của DarkBall
+    public float darkBallSpeed = 10f; // Tốc độ di chuyển của DarkBall
+    private bool canUseDarkBall = true; // Biến kiểm tra có thể sử dụng DarkBall hay không
+    private float darkBallCooldown = 60f; // Thời gian hồi chiêu của DarkBall
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,7 +70,6 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         JumpAndCheckGround();
-        //Dodge();
         Block();
         Attack();
         Climb();
@@ -73,16 +77,88 @@ public class PlayerController : MonoBehaviour
         Ultimate();
         SkillExplosion();
         SkillExplosion();
+        SkillDarkBall();
+    }
+    public void SkillDarkBall()
+    {
+        // Kiểm tra khi người chơi nhấn phím kích hoạt Skill DarkBall
+        if (canUseDarkBall && Input.GetKeyDown(KeyCode.J))
+        {
+            StartCoroutine(DarkBallCooldown());
+            // Tạo ra quả cầu DarkBall
+            GameObject darkBall = Instantiate(darkBallPrefab, transform.position, Quaternion.identity);
+            Rigidbody2D darkBallRb = darkBall.GetComponent<Rigidbody2D>();
+            // Đặt hướng di chuyển của quả cầu DarkBall theo hướng của người chơi
+            darkBallRb.velocity = new Vector2(transform.localScale.x * darkBallSpeed, 0f);
+            audioSource.PlayOneShot(skill1Sound); // Sử dụng âm thanh của skill1Sound hoặc thay bằng âm thanh khác nếu có
+                                                  // Flip quả cầu DarkBall theo hướng của người chơi
+            SpriteRenderer darkBallSprite = darkBall.GetComponent<SpriteRenderer>();
+            darkBallSprite.flipX = (transform.localScale.x < 0); // Nếu Player quay mặt sang trái, flip quả cầu DarkBall
+
+            // Di chuyển camera theo quả cầu DarkBall
+            StartCoroutine(FollowDarkBall(darkBall.transform));
+
+            // Hủy bỏ quả cầu DarkBall sau 5 giây (10f / 2f = 5 giây)
+            Destroy(darkBall, 5f);
+        }
     }
 
+    private IEnumerator DarkBallCooldown()
+    {
+        canUseDarkBall = false;
+        yield return new WaitForSeconds(darkBallCooldown);
+        canUseDarkBall = true;
+    }
+
+    private IEnumerator FollowDarkBall(Transform darkBallTransform)
+    {
+        // Di chuyển camera theo quả cầu DarkBall
+        virtualCamera.Follow = darkBallTransform;
+
+        // Chờ cho đến khi quả cầu DarkBall biến mất
+        yield return new WaitForSeconds(5f);
+
+        // Phóng to camera lên 6f trong 0.5 giây
+        StartCoroutine(SmoothZoom(6f, 0.5f));
+
+        // Chờ 0.5 giây
+        yield return new WaitForSeconds(0.5f);
+
+        // Đặt lại camera theo Player
+        virtualCamera.Follow = transform;
+
+        // Thu nhỏ camera lại thành 2.93f trong 0.5 giây
+        StartCoroutine(SmoothZoom(2.93f, 0.5f));
+    }
+
+    private IEnumerator SmoothZoom(float targetSize, float duration)
+    {
+        float startSize = virtualCamera.m_Lens.OrthographicSize;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(startSize, targetSize, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        virtualCamera.m_Lens.OrthographicSize = targetSize;
+    }
     public void Move()
     {
         xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * currentSpeed, rb.velocity.y);
+
         if (xInput != 0)
         {
+            // Cập nhật facingRight dựa trên hướng di chuyển
+            facingRight = xInput > 0;
+
+            // Cập nhật scale của nhân vật để đối mặt đúng hướng
             transform.localScale = new Vector3(Mathf.Sign(xInput), 1, 1);
             anim.SetBool("IsRunning", true);
+
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(moveSound);
@@ -93,6 +169,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsRunning", false); // Khi đứng yên, animation di chuyển là false
         }
     }
+
     public void Climb()
     {
         // Kiểm tra nếu người chơi đang leo

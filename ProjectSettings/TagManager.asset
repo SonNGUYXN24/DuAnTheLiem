@@ -25,6 +25,8 @@ TagManager:
   - BossSkill2
   - BossBattle
   - LastSkill
+  - DarkBall
+  - DarkBallTrigger
   layers:
   - Default
   - TransparentFX

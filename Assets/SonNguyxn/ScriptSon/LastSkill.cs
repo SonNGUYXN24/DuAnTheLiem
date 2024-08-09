@@ -40,9 +40,9 @@ public class LastSkill : MonoBehaviour
     private IEnumerator UseLastSkill()
     {
         Debug.Log("Starting UseLastSkill coroutine");
-        virtualCamera.m_Lens.OrthographicSize = 8f; // Điều chỉnh kích thước theo mong muốn
+        StartCoroutine(SmoothZoom(7.5f, 0.5f)); // Phóng to camera mượt mà trong 1 giây
         isCameraZoomed = true;
-        
+
         yield return new WaitForSeconds(1f);
         Debug.Log("Waited for 1 second");
         trigger.enabled = true;
@@ -51,18 +51,51 @@ public class LastSkill : MonoBehaviour
         // Dịch chuyển Player tới phía trước
         lastSkillAudioSource.PlayOneShot(lastSkillSound);
         lastSkillEffect.Play();
-        Vector2 dashPosition = rb.position + Vector2.right * dashDistance;
-        rb.MovePosition(dashPosition);
+
+        // Xác định hướng dash
+        Vector2 dashDirection = playerController.facingRight ? Vector2.right : Vector2.left;
+        StartCoroutine(SmoothDash(rb.position + dashDirection * dashDistance, 0.3f)); // Dash mượt mà trong 0.5 giây
+
         trigger.enabled = true;
         playerController.currentSpeed -= 6;
         yield return new WaitForSeconds(2f);
         Debug.Log("Waited for skill duration");
         playerController.currentSpeed += 6;
-        virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định
+        StartCoroutine(SmoothZoom(2.93f, 0.5f)); // Thu nhỏ camera mượt mà trong 1 giây
         isCameraZoomed = false;
         trigger.enabled = false;
         anim.SetBool("IsLastSkill", false);
         isUsingSkill = false;
         Debug.Log("Finished UseLastSkill coroutine");
+    }
+
+    private IEnumerator SmoothZoom(float targetSize, float duration)
+    {
+        float startSize = virtualCamera.m_Lens.OrthographicSize;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(startSize, targetSize, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        virtualCamera.m_Lens.OrthographicSize = targetSize;
+    }
+
+    private IEnumerator SmoothDash(Vector2 targetPosition, float duration)
+    {
+        Vector2 startPosition = rb.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            rb.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsed / duration));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.MovePosition(targetPosition);
     }
 }

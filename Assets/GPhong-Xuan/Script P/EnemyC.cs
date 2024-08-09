@@ -157,6 +157,15 @@ public class EnemyC : MonoBehaviour
                 StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+        if (collision.gameObject.CompareTag("LastSkill"))
+        {
+            currentHPEnemy -= 1000000;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
     }
     private IEnumerator PlayBloodEffectAndDestroy()
     {

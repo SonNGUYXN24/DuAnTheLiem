@@ -12,6 +12,7 @@ public class EnemyP : MonoBehaviour
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
     public ParticleSystem fireBallHit;
+    public ParticleSystem darkBallHit;
     public ParticleSystem bloodEffect;
     public ParticleSystem swordEffect;
     private float TimeAttackRate = 2f;
@@ -140,6 +141,27 @@ public class EnemyP : MonoBehaviour
                 StartCoroutine(PlayBloodEffectAndDestroy());
             }
         }
+        if (collision.gameObject.CompareTag("DarkBall"))
+        {
+            currentHPEnemy -= 1000;
+            rb.velocity = Vector2.zero;
+            UpdateHP();
+
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
+        if (collision.gameObject.CompareTag("DarkBallTrigger"))
+        {
+            currentHPEnemy -= 5000;
+            UpdateHP();
+
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
         if (collision.gameObject.CompareTag("Ultimate"))
         {
             currentHPEnemy -= 800;
@@ -152,6 +174,15 @@ public class EnemyP : MonoBehaviour
         if (collision.gameObject.CompareTag("Explosion"))
         {
             currentHPEnemy -= 500;
+            UpdateHP();
+            if (currentHPEnemy <= 0 && !isDead)
+            {
+                StartCoroutine(PlayBloodEffectAndDestroy());
+            }
+        }
+        if (collision.gameObject.CompareTag("LastSkill"))
+        {
+            currentHPEnemy -= 1000000;
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {
