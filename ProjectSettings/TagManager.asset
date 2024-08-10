@@ -28,6 +28,7 @@ TagManager:
   - DarkBall
   - DarkBallTrigger
   - Obstacles
+  - DragonBoss
   layers:
   - Default
   - TransparentFX
@@ -74,12 +75,15 @@ TagManager:
   - name: Ground
     uniqueID: 2949137665
     locked: 0
-  - name: Player
+  - name: Enemies
     uniqueID: 2280387201
     locked: 0
-  - name: UI
+  - name: Player
     uniqueID: 4020569357
     locked: 0
-  - name: Obstacles
+  - name: UI
     uniqueID: 2024698051
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1263681271
     locked: 0
