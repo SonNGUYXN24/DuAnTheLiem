@@ -6,16 +6,17 @@ using TMPro;
 public class DragonBoss : MonoBehaviour
 {
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
-    public float detectionRange = 15f;  // Phạm vi phát hiện người chơi
+    public float detectionRange = 10f;  // Phạm vi phát hiện người chơi
+    public float fireBallRange = 20f;  // Phạm vi bắn FireBall
     private bool inSkillCooldown = false; // Biến kiểm tra xem đang trong thời gian cooldown của skill hay không
     private float stopRange = 0.5f;
     public StatusPlayer statusPlayer;
     public Transform Player;//follow player
+    public Transform Player2; // xác định vị trí của Player để bắn FireBall
     private float TimeAttackRate = 2f;
     private float timeAttack;
     public GameObject portalEnd;
     private bool right;
-
     public Slider healthSlider;//slider hp boss
     public int health;
     public int currentHPEnemy;
@@ -25,28 +26,24 @@ public class DragonBoss : MonoBehaviour
     public Transform Knifedamage;
     public GameObject hitbox;
     public ParticleSystem deadEffect;
-    public ParticleSystem fireBallHit;
     public ParticleSystem bloodEffect;
     public ParticleSystem swordEffect;
-    public ParticleSystem skill1;
-    public ParticleSystem skill2;
     private bool isDead;
-    public BoxCollider2D skill1Trigger;
-    public BoxCollider2D skill2Trigger;
     public TextMeshProUGUI hpBossText;
-    public GameObject lastSkillText;
-    public AudioSource bossAudio;
-    public AudioClip bossSkill1;
-    public AudioClip bossSkill2;
+    public AudioSource dragonBossAudio;
     public CameraController cameraController;
-    public GameObject lastSkillController;
-    public ParticleSystem lastSkillEffect;
+    public GameObject fireBallPrefab; // Prefab của viên đạn FireBall
+    public Transform firePoint; // Vị trí bắn FireBall
+    private float fireBallCooldown = 2f; // Thời gian hồi chiêu của FireBall
+    private float fireBallTimer;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHPEnemy = health;
         UpdateHP();
+        fireBallTimer = fireBallCooldown;
 
     }
     public void UpdateHP()
@@ -59,24 +56,12 @@ public class DragonBoss : MonoBehaviour
     {
         TimeAttack();
         followPlayer();
-        Skill();
         if (currentHPEnemy <= 0)
         {
-            bossAudio.Stop();
+            dragonBossAudio.Stop();
             cameraController.hpBossCanvas.SetActive(false);
         }
-        skillLast();
     }
-
-    public void skillLast()
-    {
-        if (currentHPEnemy <= 30000 && currentHPEnemy > 0)
-        {
-            lastSkillText.SetActive(true);
-            lastSkillController.SetActive(true);
-        }
-    }
-
     void TimeAttack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
@@ -86,8 +71,8 @@ public class DragonBoss : MonoBehaviour
 
             if (timeAttack <= 0)
             {
-                //animation tấn công
-                animator.SetTrigger("Attack");
+                // animation tấn công
+                animator.SetTrigger("IsNormalAttack");
                 var oneSkill = Instantiate(hitbox, Knifedamage.position, Quaternion.identity);
                 Destroy(oneSkill, 0.1f);
                 timeAttack = TimeAttackRate;
@@ -95,14 +80,15 @@ public class DragonBoss : MonoBehaviour
         }
         else
         {
-            animator.SetBool("isidiel", true);
+            animator.SetBool("IsIdiel", true);
         }
         if (currentHPEnemy <= 0)
         {
             cameraController.bossBattleMusic.Stop();
         }
     }
-    private void followPlayer()//thấy player thì chạy theo
+
+    private void followPlayer() // thấy player thì chạy theo
     {
         // Tính khoảng cách giữa quái vật và người chơi
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
@@ -111,71 +97,53 @@ public class DragonBoss : MonoBehaviour
         {
             if (distanceToPlayer > stopRange)
             {
-
                 Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
-                rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
+                rb.velocity = moveDirection * 3f; // Tốc độ di chuyển
 
-                animator.SetBool("ismove", true);
+                animator.SetBool("IsRunning", true);
 
-
-                //xoay mặt
+                // xoay mặt
                 if (right && moveDirection.x < 0 || !right && moveDirection.x > 0)
                 {
                     right = !right;
                     Vector3 kichThuoc = transform.localScale;
                     kichThuoc.x = kichThuoc.x * -1;
                     transform.localScale = kichThuoc;
-
                 }
             }
             else
             {
-                animator.SetBool("ismove", false);
+                animator.SetBool("IsRunning", false);
             }
-
         }
         else
         {
-
-            animator.SetBool("ismove", false);
+            animator.SetBool("IsRunning", false);
         }
     }
-    public void Skill()
+
+    private void SkillFireBall()
     {
-        if (!inSkillCooldown)
+        float distanceToPlayer = Vector3.Distance(transform.position, Player2.position);
+        if (distanceToPlayer <= fireBallRange)
         {
-            if (currentHPEnemy <= 70000 && currentHPEnemy > 0)
+            fireBallTimer -= Time.deltaTime;
+
+            if (fireBallTimer <= 0)
             {
-                skill1Trigger.enabled = true;
-                bossAudio.PlayOneShot(bossSkill1);
-                StartCoroutine(ActivateSkill(skill1, 5f)); // Kích hoạt Skill1 trong 5 giây
+                // animation bắn FireBall
+                animator.SetTrigger("IsFlameAttack");
+                var fireBall = Instantiate(fireBallPrefab, firePoint.position, Quaternion.identity);
+                fireBall.GetComponent<FireBallDragonBoss>().Initialize(Player2); // Đảm bảo rằng phương thức Initialize tồn tại
+                fireBallTimer = fireBallCooldown;
             }
-            if (currentHPEnemy <= 30000 && currentHPEnemy > 0)
-            {
-                skill1Trigger.enabled = false;
-                skill2Trigger.enabled = true;
-                bossAudio.PlayOneShot(bossSkill2);
-                StartCoroutine(ActivateSkill(skill2, 5f)); // Kích hoạt Skill2 trong 5 giây
-            }
-            inSkillCooldown = true;
-            StartCoroutine(SkillCooldown());
+        }
+        else
+        {
+            animator.SetBool("IsIdiel2", true);
         }
     }
 
-    private IEnumerator ActivateSkill(ParticleSystem skill, float duration)
-    {
-        skill.Play();
-        yield return new WaitForSeconds(duration);
-        skill.Stop();
-        skill1Trigger.enabled = false; // Tắt trigger sau khi kết thúc skill
-        skill2Trigger.enabled = false; // Tắt trigger sau khi kết thúc skill
-    }
-
-    private IEnumerator SkillCooldown()
-    {
-        yield return new WaitForSeconds(0.75f);
-        inSkillCooldown = false;
-    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Sword"))
@@ -190,8 +158,7 @@ public class DragonBoss : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("FireBall"))
         {
-            currentHPEnemy -= 100;
-            fireBallHit.Play();
+            currentHPEnemy += 500;
             UpdateHP();
 
             if (currentHPEnemy <= 0 && !isDead)
@@ -219,11 +186,8 @@ public class DragonBoss : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("LastSkill"))
         {
-            detectionRange -= 15f;
-            lastSkillEffect.Play();
-            bossAudio.Stop();
             StartCoroutine(WaitLastSkill());
-            currentHPEnemy -= 1000000;
+            currentHPEnemy -= 10000;
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {
@@ -260,13 +224,7 @@ public class DragonBoss : MonoBehaviour
         isDead = true;
         deadEffect.Play();
         bloodEffect.Play();
-
         yield return new WaitForSeconds(1f);
-        lastSkillText.SetActive(false);
-
-        yield return new WaitForSeconds(1.5f);
-
-        lastSkillController.SetActive(false);
         portalEnd.SetActive(true);
         Destroy(gameObject);
     }

@@ -29,6 +29,7 @@ TagManager:
   - DarkBallTrigger
   - Obstacles
   - DragonBoss
+  - FireBallDragon
   layers:
   - Default
   - TransparentFX

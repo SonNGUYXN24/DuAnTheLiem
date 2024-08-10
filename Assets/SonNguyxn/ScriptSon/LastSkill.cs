@@ -54,7 +54,7 @@ public class LastSkill : MonoBehaviour
 
         // Kiểm tra lớp trước khi bỏ qua va chạm
         int playerLayer = LayerMask.NameToLayer("Player");
-        int obstaclesLayer = LayerMask.NameToLayer("Enemies");
+        int obstaclesLayer = LayerMask.NameToLayer("Obstacles");
 
         if (playerLayer != -1 && obstaclesLayer != -1)
         {

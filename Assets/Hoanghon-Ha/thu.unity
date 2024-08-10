@@ -398,6 +398,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9134764133240146569, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -558,6 +562,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 1816545092}
+    - target: {fileID: 5929161632773962633, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031971247569101126, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -715,6 +723,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 1816545092}
+    - target: {fileID: 5929161632773962633, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031971247569101126, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1651,6 +1663,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7509801068355293537, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509801068355293537, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2014580095
+      objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_Name
       value: Goblin (1)
@@ -1786,6 +1806,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 1816545092}
+    - target: {fileID: 5929161632773962633, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031971247569101126, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2543,6 +2567,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9134764133240146569, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2694,6 +2722,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 1816545092}
+    - target: {fileID: 5929161632773962633, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031971247569101126, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -58509,6 +58541,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7509801068355293537, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509801068355293537, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2014580095
+      objectReference: {fileID: 0}
     - target: {fileID: 8698586549261379329, guid: f7c26b70b6da6234e9bbdf6d7e8fce18, type: 3}
       propertyPath: m_Name
       value: Goblin
@@ -59812,6 +59852,10 @@ PrefabInstance:
       propertyPath: statusPlayer
       value: 
       objectReference: {fileID: 1816545092}
+    - target: {fileID: 5929161632773962633, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7031971247569101126, guid: 01a2ccb2fa25f5148bf80f7a0702fa7f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -62321,6 +62365,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9142788745904645507, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142788745904645507, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -274397939
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62532,6 +62584,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5155350037438279104, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134764133240146569, guid: cbaa598b7c920b74eba0d17e4ad0a3e3, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

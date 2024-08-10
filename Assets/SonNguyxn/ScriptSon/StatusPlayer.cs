@@ -180,6 +180,13 @@ public class StatusPlayer : MonoBehaviour
             playerBloodEffect.Play();
             UpdateUI();
         }
+        if (other.gameObject.CompareTag("FireBallDragon"))
+        {
+            currentHp -= 500;
+            audioSource.PlayOneShot(hitSound);
+            playerBloodEffect.Play();
+            UpdateUI();
+        }
         if (other.gameObject.CompareTag("DiamondGr"))
         {
             currentdiamondG += 1;
