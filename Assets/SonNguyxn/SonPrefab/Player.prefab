@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1807094596908898195
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 49074671431446524}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.93759155, y: 0.8204, z: -10}
+  m_LocalPosition: {x: 0.9376068, y: 0.8204, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3340,6 +3340,83 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2134223895421085499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843300124025870038}
+  - component: {fileID: 4909422940861227303}
+  m_Layer: 7
+  m_Name: BodyTrigger
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843300124025870038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134223895421085499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8379530001711099377}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4909422940861227303
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134223895421085499}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.028678894, y: 0.019122183}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0573578, y: 1.4206854}
+  m_EdgeRadius: 0
 --- !u!1 &2149558581969107578
 GameObject:
   m_ObjectHideFlags: 0
@@ -9149,9 +9226,9 @@ GameObject:
   - component: {fileID: 9078373465757521403}
   - component: {fileID: 6425231751203327099}
   - component: {fileID: 6416020881298878184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9186,6 +9263,7 @@ Transform:
   - {fileID: 4892137991628480070}
   - {fileID: 4932708422144790933}
   - {fileID: 8983212128118681127}
+  - {fileID: 843300124025870038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9142788745904645507
@@ -9226,8 +9304,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2014580095
-  m_SortingLayer: 4
+  m_SortingLayerID: -274397939
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: af4ff781f12f9e04cabf42033cf06d7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9288,7 +9366,7 @@ MonoBehaviour:
   skill1Sound: {fileID: 8300000, guid: e444d2b0bb62ff442818fa3858f82b6a, type: 3}
   ultimateSound: {fileID: 8300000, guid: 395cdcfb18e51ad479a985d63a12df74, type: 3}
   explosionSound: {fileID: 8300000, guid: c85295870f036b342915b53203f77269, type: 3}
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 6259252913420901492}
   ultimateEffect: {fileID: 4967881669888316938}
   explosionEffect: {fileID: 1289591416449449725}
   ultimateTrigger: {fileID: 2074584295814563210}
@@ -9301,8 +9379,8 @@ MonoBehaviour:
   attackCooldown: 0.07
   facingRight: 1
   darkBallPrefab: {fileID: 3844765810132241101, guid: 3fd5de86fdeb8b447bf5dc75456e42b9, type: 3}
-  darkBallSpeed: 10
-  darkBallCooldown: 10
+  darkBallSpeed: 15
+  darkBallCooldown: 5
 --- !u!114 &7119317602519469150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9329,14 +9407,14 @@ MonoBehaviour:
   anim: {fileID: 2623950038142655921}
   gameOver: {fileID: 0}
   bloodButton: {fileID: 5738613794361353323}
-  maxHp: 1000
-  maxStamina: 1000
+  maxHp: 20000
+  maxStamina: 200
   currentMoney: 0
   currentHp: 0
   currentStamina: 0
   currentDamage: 0
   currentArmor: 0
-  baseDamage: 100
+  baseDamage: 500
   baseMoney: 2000000
   timeSinceLastHeal: 0
   diamondGreen: 10
@@ -9350,6 +9428,9 @@ MonoBehaviour:
   playerBloodEffect: {fileID: 2213030770978208737}
   audioSource: {fileID: 6416020881298878184}
   hitSound: {fileID: 8300000, guid: 6f0abdf5700b741469e5a6f3ea688128, type: 3}
+  explosionEffect2: {fileID: 19800002, guid: 6ecf76dc4f268d340b2666896a954bcc, type: 3}
+  fireBallSound: {fileID: 6416020881298878184}
+  fireBallSounds: {fileID: 8300000, guid: 753ec20ca330f4e4ab6ad64efa4703b4, type: 3}
 --- !u!114 &7813042991692777960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12202,7 +12283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4892137991628480070
 Transform:
   m_ObjectHideFlags: 0
@@ -12236,7 +12317,7 @@ MonoBehaviour:
   anim: {fileID: 2623950038142655921}
   rb: {fileID: 9078373465757521403}
   trigger: {fileID: 4492152828913984279}
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 6259252913420901492}
   playerController: {fileID: 4098293197660671121}
   lastSkillSound: {fileID: 8300000, guid: fbc63e20a815acc43b71b531894346ab, type: 3}
   lastSkillAudioSource: {fileID: 6416020881298878184}

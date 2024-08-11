@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 public class DragonBoss : MonoBehaviour
 {
     public float detectionRangeAttack = 2.5f;  // Phạm vi phát hiện người chơi
     public float detectionRange = 10f;  // Phạm vi phát hiện người chơi
     public float fireBallRange = 20f;  // Phạm vi bắn FireBall
+    public float fireBallSpeed = 5f;  // Tốc độ của FireBall
     private bool inSkillCooldown = false; // Biến kiểm tra xem đang trong thời gian cooldown của skill hay không
     private float stopRange = 0.5f;
     public StatusPlayer statusPlayer;
@@ -36,6 +38,14 @@ public class DragonBoss : MonoBehaviour
     public Transform firePoint; // Vị trí bắn FireBall
     private float fireBallCooldown = 2f; // Thời gian hồi chiêu của FireBall
     private float fireBallTimer;
+    public GameObject fireWall;
+    public AudioClip fireWallSounds;
+    public CinemachineVirtualCamera virtualCamera; // Thêm biến cho Virtual Camera
+    public float originalCameraSize;
+    private bool hasTriggeredFireWall = false; // Biến kiểm tra xem đã kích hoạt fireWall chưa
+    public Transform originalCameraFollow; // Lưu trữ đối tượng theo dõi ban đầu của camera
+    public float originalScreenX;
+    public float originalScreenY;
 
     void Start()
     {
@@ -44,25 +54,44 @@ public class DragonBoss : MonoBehaviour
         currentHPEnemy = health;
         UpdateHP();
         fireBallTimer = fireBallCooldown;
-
+        originalCameraSize = virtualCamera.m_Lens.OrthographicSize; // Lưu kích thước ban đầu của camera
+        originalCameraFollow = virtualCamera.Follow; // Lưu đối tượng theo dõi ban đầu của camera
+        originalScreenX = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
+        originalScreenY = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY;
     }
+
     public void UpdateHP()
     {
         healthSlider.value = (float)currentHPEnemy / maxHP;
         hpBossText.text = $"{currentHPEnemy}/{maxHP}";
     }
+
     // Update is called once per frame
     void Update()
     {
-        TimeAttack();
         followPlayer();
+        if (currentHPEnemy <= 100000 && !hasTriggeredFireWall)
+        {
+            StartCoroutine(HandleFireWall());
+            FlameAttack();
+        }
+        else if (currentHPEnemy > 100000 && currentHPEnemy <= 200000)
+        {
+            NormalAttack();
+        }
         if (currentHPEnemy <= 0)
         {
             dragonBossAudio.Stop();
             cameraController.hpBossCanvas.SetActive(false);
+            fireWall.SetActive(false); // Tắt fireWall khi DragonBoss chết
+        }
+        if (currentHPEnemy <= 100000)
+        {
+            FlameAttack();
         }
     }
-    void TimeAttack()
+
+    void NormalAttack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
         if (distanceToPlayer < detectionRangeAttack)
@@ -122,9 +151,9 @@ public class DragonBoss : MonoBehaviour
         }
     }
 
-    private void SkillFireBall()
+    private void FlameAttack()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, Player2.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, Player.position);
         if (distanceToPlayer <= fireBallRange)
         {
             fireBallTimer -= Time.deltaTime;
@@ -134,15 +163,86 @@ public class DragonBoss : MonoBehaviour
                 // animation bắn FireBall
                 animator.SetTrigger("IsFlameAttack");
                 var fireBall = Instantiate(fireBallPrefab, firePoint.position, Quaternion.identity);
-                fireBall.GetComponent<FireBallDragonBoss>().Initialize(Player2); // Đảm bảo rằng phương thức Initialize tồn tại
+
+                // Xác định hướng bắn của FireBall
+                Vector2 direction = (Player.position - firePoint.position).normalized;
+                fireBall.GetComponent<Rigidbody2D>().velocity = direction * fireBallSpeed;
+
+                // Xoay hướng của FireBall theo hướng của DragonBoss
+                if (direction.x < 0)
+                {
+                    fireBall.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    fireBall.transform.localScale = new Vector3(1, 1, 1);
+                }
+
                 fireBallTimer = fireBallCooldown;
             }
         }
         else
         {
-            animator.SetBool("IsIdiel2", true);
+            animator.SetBool("Isidiel2", true);
         }
     }
+
+    private IEnumerator HandleFireWall()
+    {
+        hasTriggeredFireWall = true;
+
+        // Chuyển camera sang DragonBoss
+        virtualCamera.Follow = transform;
+        yield return new WaitForSeconds(1.5f);
+
+        // Tạm dừng hoạt động của Player và DragonBoss
+        Player.GetComponent<PlayerController>().enabled = false;
+        rb.velocity = Vector2.zero; // Đóng băng DragonBoss
+        animator.enabled = false; // Tắt animator của DragonBoss
+
+        // Phóng to camera và di chuyển vị trí
+        float elapsedTime = 0f;
+        float targetSize = 15f;
+        var framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        while (elapsedTime < 2f)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(originalCameraSize, targetSize, elapsedTime / 2f);
+            framingTransposer.m_ScreenX = Mathf.Lerp(originalScreenX, 0.45f, elapsedTime / 1f);
+            framingTransposer.m_ScreenY = Mathf.Lerp(originalScreenY, 0.8f, elapsedTime / 1f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        virtualCamera.m_Lens.OrthographicSize = targetSize;
+        framingTransposer.m_ScreenX = 0.45f;
+        framingTransposer.m_ScreenY = 0.8f;
+
+        // Kích hoạt fireWall
+        fireWall.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
+        // Thu nhỏ camera trở lại và di chuyển vị trí về ban đầu
+        elapsedTime = 0f;
+        while (elapsedTime < 2f)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(targetSize, originalCameraSize, elapsedTime / 2f);
+            framingTransposer.m_ScreenX = Mathf.Lerp(0.45f, originalScreenX, elapsedTime / 1f);
+            framingTransposer.m_ScreenY = Mathf.Lerp(0.8f, originalScreenY, elapsedTime / 1f);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        virtualCamera.m_Lens.OrthographicSize = originalCameraSize;
+        framingTransposer.m_ScreenX = originalScreenX;
+        framingTransposer.m_ScreenY = originalScreenY;
+
+        // Trả lại camera cho Player
+        virtualCamera.Follow = originalCameraFollow;
+
+        // Kích hoạt lại hoạt động của Player và DragonBoss
+        Player.GetComponent<PlayerController>().enabled = true;
+        animator.enabled = true; // Bật lại animator của DragonBoss
+        this.enabled = true;
+    }
+
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -158,7 +258,7 @@ public class DragonBoss : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("FireBall"))
         {
-            currentHPEnemy += 500;
+            currentHPEnemy -= 500;
             UpdateHP();
 
             if (currentHPEnemy <= 0 && !isDead)

@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class FireBallDragonBoss : MonoBehaviour
 {
-    public float speed = 15f;
-    private Transform player;
-    public GameObject explosionEffect; // Prefab của hiệu ứng nổ
+    public BoxCollider2D fireBallTrigger;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     public void Initialize(Transform playerTransform)
     {
-        player = playerTransform;
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        rb.velocity = direction * 15f; // Tốc độ của FireBall
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (player != null)
+        if (other.CompareTag("Player"))
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            // Dừng FireBall
+            rb.velocity = Vector2.zero;
+            // Kích hoạt trigger
+            StartCoroutine(ActivateTrigger());
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator ActivateTrigger()
     {
-        if (collision.CompareTag("Player"))
-        {
-            // Dừng lại và kích hoạt hiệu ứng nổ
-            speed = 0f;
-            Instantiate(explosionEffect, transform.position, transform.rotation);
-            StartCoroutine(DestroyAfterDelay(2f));
-        }
-    }
+        fireBallTrigger.enabled = true;
 
-    private IEnumerator DestroyAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
+        // Chờ 2 giây
+        yield return new WaitForSeconds(0.5f);
+
+        // Hủy đối tượng FireBall
         Destroy(gameObject);
     }
 }

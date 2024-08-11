@@ -30,6 +30,7 @@ TagManager:
   - Obstacles
   - DragonBoss
   - FireBallDragon
+  - FireWall
   layers:
   - Default
   - TransparentFX

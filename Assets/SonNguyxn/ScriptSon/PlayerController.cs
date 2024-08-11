@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     public float darkBallSpeed = 10f; // Tốc độ di chuyển của DarkBall
     private bool canUseDarkBall = true; // Biến kiểm tra có thể sử dụng DarkBall hay không
     public float darkBallCooldown = 60f; // Thời gian hồi chiêu của DarkBall
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -47,6 +47,9 @@ public class StatusPlayer : MonoBehaviour
     public ParticleSystem playerBloodEffect;
     public AudioSource audioSource;
     public AudioClip hitSound;
+    public ParticleSystem explosionEffect2;
+    public AudioSource fireBallSound;
+    public AudioClip fireBallSounds;
     private void Start()
     {
         currentHp = maxHp;
@@ -61,6 +64,7 @@ public class StatusPlayer : MonoBehaviour
         UpdateUI();
         anim = GetComponent<Animator>();
         playerBloodEffect.Stop();
+        explosionEffect2.Stop();
     }
 
     private void Update()
@@ -184,7 +188,14 @@ public class StatusPlayer : MonoBehaviour
         {
             currentHp -= 500;
             audioSource.PlayOneShot(hitSound);
-            playerBloodEffect.Play();
+            explosionEffect2.Play();
+            fireBallSound.PlayOneShot(fireBallSounds);
+            UpdateUI();
+        }
+        if (other.gameObject.CompareTag("FireWall"))
+        {
+            currentHp -= 200;
+            audioSource.PlayOneShot(hitSound);
             UpdateUI();
         }
         if (other.gameObject.CompareTag("DiamondGr"))
