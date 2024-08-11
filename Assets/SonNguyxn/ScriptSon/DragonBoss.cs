@@ -183,7 +183,7 @@ public class DragonBoss : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Isidiel2", true);
+            animator.SetBool("IsIdiel2", true);
         }
     }
 

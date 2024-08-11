@@ -868,6 +868,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1453198940464727711, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1555652747894690307, guid: 483237630f44e8641a0acb958b6365bd, type: 3}
       propertyPath: statusPlayer
       value: 

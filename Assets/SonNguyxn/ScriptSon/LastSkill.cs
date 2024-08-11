@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro; // Thêm thư viện TextMeshPro
 
 public class LastSkill : MonoBehaviour
 {
@@ -18,20 +19,25 @@ public class LastSkill : MonoBehaviour
     public AudioClip lastSkillSound;
     public AudioSource lastSkillAudioSource;
     public ParticleSystem lastSkillEffect;
+    public TextMeshProUGUI cooldownText; // Biến TextMeshProUGUI để hiển thị thời gian hồi chiêu
+    private float cooldownTime = 30f; // Thời gian hồi chiêu
+    private float currentCooldownTime = 0f; // Thời gian hồi chiêu hiện tại
 
     void Start()
     {
         lastSkillEffect.Stop();
+        cooldownText.text = "Skill Ready"; // Hiển thị trạng thái sẵn sàng của kỹ năng
     }
 
     void Update()
     {
         Skill();
+        UpdateCooldown();
     }
 
     public void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.K) && !isUsingSkill)
+        if (Input.GetKeyDown(KeyCode.K) && !isUsingSkill && currentCooldownTime <= 0f)
         {
             StartCoroutine(UseLastSkill());
         }
@@ -69,8 +75,8 @@ public class LastSkill : MonoBehaviour
 
         // Xác định hướng dash
         Vector2 dashDirection = playerController.facingRight ? Vector2.right : Vector2.left;
-        StartCoroutine(SmoothDash(rb.position + dashDirection * dashDistance, 0.75f)); // Dash mượt mà trong 0.3 giây
-        StartCoroutine(SmoothZoom(7.5f, 0.75f, new Vector2(0.54f, 0.64f))); // Phóng to camera mượt mà trong 0.3 giây
+        StartCoroutine(SmoothDash(rb.position + dashDirection * dashDistance, 0.75f)); // Dash mượt mà trong 0.75 giây
+        StartCoroutine(SmoothZoom(3f, 0.75f, new Vector2(0.54f, 0.64f))); // Phóng to camera mượt mà trong 0.75 giây
 
         trigger.enabled = true;
         playerController.currentSpeed -= 6;
@@ -88,6 +94,9 @@ public class LastSkill : MonoBehaviour
         {
             Physics2D.IgnoreLayerCollision(playerLayer, obstaclesLayer, false);
         }
+
+        // Bắt đầu thời gian hồi chiêu
+        currentCooldownTime = cooldownTime;
 
         Debug.Log("Finished UseLastSkill coroutine");
     }
@@ -125,5 +134,18 @@ public class LastSkill : MonoBehaviour
         }
 
         rb.MovePosition(targetPosition);
+    }
+
+    private void UpdateCooldown()
+    {
+        if (currentCooldownTime > 0f)
+        {
+            currentCooldownTime -= Time.deltaTime;
+            cooldownText.text = "CD:" + Mathf.Ceil(currentCooldownTime).ToString() + "s";
+        }
+        else
+        {
+            cooldownText.text = "Ok!";
+        }
     }
 }

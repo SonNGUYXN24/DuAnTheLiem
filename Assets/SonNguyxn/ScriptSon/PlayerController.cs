@@ -3,7 +3,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-
+using TMPro;
+using System.Runtime.InteropServices; // Thêm thư viện TextMeshPro
 
 
 
@@ -56,8 +57,25 @@ public class PlayerController : MonoBehaviour
     public GameObject darkBallPrefab; // Prefab của DarkBall
     public float darkBallSpeed = 10f; // Tốc độ di chuyển của DarkBall
     private bool canUseDarkBall = true; // Biến kiểm tra có thể sử dụng DarkBall hay không
-    public float darkBallCooldown = 60f; // Thời gian hồi chiêu của DarkBall
-    
+    public float darkBallCooldown = 10f; // Thời gian hồi chiêu của DarkBall
+    private float currentCooldownTime = 0f; // Thời gian hồi chiêu hiện tại
+    public float explosionCooldown = 20f; // Thời gian hồi chiêu của Explosion
+    public TextMeshProUGUI explosionCooldownText; // Biến TextMeshProUGUI để hiển thị thời gian hồi chiêu của Explosion
+    private float currentExplosionCooldownTime = 0f; // Thời gian hồi chiêu hiện tại của Explosion
+    public float ultimateCooldown = 60f; // Thời gian hồi chiêu của Ultimate
+    public TextMeshProUGUI ultimateCooldownText; // Biến TextMeshProUGUI để hiển thị thời gian hồi chiêu của Ultimate
+    private float currentUltimateCooldownTime = 0f; // Thời gian hồi chiêu hiện tại của Ultimate
+    public float fireballCooldown = 2f; // Thời gian hồi chiêu của FireBall
+    private bool canUseFireBall = true; // Trạng thái có thể sử dụng FireBall
+    public TextMeshProUGUI fireballCooldownText; // Biến TextMeshProUGUI để hiển thị thời gian hồi chiêu của FireBall
+    private float currentFireballCooldownTime = 0f; // Thời gian hồi chiêu hiện tại của FireBall
+    public TextMeshProUGUI darkBallCooldownText; // Biến TextMeshProUGUI để hiển thị thời gian hồi chiêu của DarkBall
+    private float currentDarkBallCooldownTime = 0f; // Thời gian hồi chiêu hiện tại của DarkBall
+    private bool canUseExplosion = true;
+    private bool canUseUltimate = true;
+
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -99,7 +117,7 @@ public class PlayerController : MonoBehaviour
             // Di chuyển camera theo quả cầu DarkBall
             StartCoroutine(FollowDarkBall(darkBall.transform));
 
-            // Hủy bỏ quả cầu DarkBall sau 5 giây (10f / 2f = 5 giây)
+            // Hủy bỏ quả cầu DarkBall sau 5 giây
             Destroy(darkBall, 5f);
         }
     }
@@ -107,7 +125,14 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DarkBallCooldown()
     {
         canUseDarkBall = false;
-        yield return new WaitForSeconds(darkBallCooldown);
+        currentDarkBallCooldownTime = darkBallCooldown; // Bắt đầu thời gian hồi chiêu
+        while (currentDarkBallCooldownTime > 0f)
+        {
+            darkBallCooldownText.text = "CD:" + Mathf.Ceil(currentDarkBallCooldownTime).ToString() + "s";
+            currentDarkBallCooldownTime -= Time.deltaTime;
+            yield return null;
+        }
+        darkBallCooldownText.text = "Ok!";
         canUseDarkBall = true;
     }
 
@@ -119,16 +144,16 @@ public class PlayerController : MonoBehaviour
         // Chờ cho đến khi quả cầu DarkBall biến mất
         yield return new WaitForSeconds(3f);
 
-        // Phóng to camera lên 6f trong 0.5 giây
+        // Phóng to camera lên 6f trong 0.2 giây
         StartCoroutine(SmoothZoom(6f, 0.2f));
 
-        // Chờ 0.5 giây
+        // Chờ 0.2 giây
         yield return new WaitForSeconds(0.2f);
 
         // Đặt lại camera theo Player
         virtualCamera.Follow = transform;
 
-        // Thu nhỏ camera lại thành 2.93f trong 0.5 giây
+        // Thu nhỏ camera lại thành 2.93f trong 0.3 giây
         StartCoroutine(SmoothZoom(2.93f, 0.3f));
     }
 
@@ -145,6 +170,11 @@ public class PlayerController : MonoBehaviour
         }
 
         virtualCamera.m_Lens.OrthographicSize = targetSize;
+    }
+
+    private void UpdateDarkBallCooldown()
+    {
+        // Cập nhật thời gian hồi chiêu của DarkBall
     }
     public void Move()
     {
@@ -183,7 +213,7 @@ public class PlayerController : MonoBehaviour
     }
     public void SkillExplosion()
     {
-        if(playerStatus.currentStamina >= 50 && playerStatus.currentHp >= 20)
+        if (playerStatus.currentStamina >= 50 && playerStatus.currentHp >= 20 && canUseExplosion)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -203,7 +233,9 @@ public class PlayerController : MonoBehaviour
                 explosionEffect.Play();
                 // Đợi thêm 0.5 giây
                 StartCoroutine(ResetVirtualCamera2());
-                
+
+                // Bắt đầu thời gian hồi chiêu
+                StartCoroutine(ExplosionCooldown());
             }
         }
         else
@@ -211,10 +243,32 @@ public class PlayerController : MonoBehaviour
             isExplosing = false;
         }
     }
+
+    private IEnumerator ExplosionCooldown()
+    {
+        canUseExplosion = false;
+        currentExplosionCooldownTime = explosionCooldown; // Bắt đầu thời gian hồi chiêu
+        while (currentExplosionCooldownTime > 0f)
+        {
+            explosionCooldownText.text = "CD:" + Mathf.Ceil(currentExplosionCooldownTime).ToString() + "s";
+            currentExplosionCooldownTime -= Time.deltaTime;
+            yield return null;
+        }
+        explosionCooldownText.text = "Ok!";
+        canUseExplosion = true;
+    }
+
+    private void UpdateExplosionCooldown()
+    {
+        // Cập nhật thời gian hồi chiêu của Explosion
+    }
+
     private IEnumerator WaitSkill()
     {
-        yield return new WaitForSeconds(0.85f);
+        yield return new WaitForSeconds(1f);
     }
+
+
     public void Attack()
     {
         if (Input.GetKey(KeyCode.F) && !isCooldown)
@@ -253,42 +307,65 @@ public class PlayerController : MonoBehaviour
 
     public void Ultimate()
     {
-        if (playerStatus.currentStamina >= 100)
-        { 
+        if (playerStatus.currentStamina >= 100 && canUseUltimate)
+        {
             if (Input.GetKeyDown(KeyCode.X))
             {
                 isUltimating = true;
-                playerStatus.currentStamina -=100;
+                playerStatus.currentStamina -= 100;
                 ultimateTrigger.enabled = true;
                 audioSource.PlayOneShot(ultimateSound);
-                 // Thu nhỏ virtual camera
-                 virtualCamera.m_Lens.OrthographicSize = 7f; // Điều chỉnh kích thước theo mong muốn
-                 isCameraZoomed = true;
-                    // Đóng băng trục X và trục Y của Player
-                    currentSpeed -= 4f;
-                    Debug.Log("Current Orthographic Size: " + virtualCamera.m_Lens.OrthographicSize);
-                    // Kết thúc hiệu ứng Ultimate
-                    ultimateEffect.Play();
-                    // Đợi thêm 0.5 giây
-                    StartCoroutine(ResetVirtualCamera());
+                // Thu nhỏ virtual camera
+                virtualCamera.m_Lens.OrthographicSize = 7f; // Điều chỉnh kích thước theo mong muốn
+                isCameraZoomed = true;
+                // Đóng băng trục X và trục Y của Player
+                currentSpeed -= 4f;
+                Debug.Log("Current Orthographic Size: " + virtualCamera.m_Lens.OrthographicSize);
+                // Kết thúc hiệu ứng Ultimate
+                ultimateEffect.Play();
+                // Đợi thêm 0.5 giây
+                StartCoroutine(ResetVirtualCamera());
+
+                // Bắt đầu thời gian hồi chiêu
+                StartCoroutine(UltimateCooldown());
             }
- 
         }
         else
         {
             isUltimating = false;
         }
     }
+
+    private IEnumerator UltimateCooldown()
+    {
+        canUseUltimate = false;
+        currentUltimateCooldownTime = ultimateCooldown; // Bắt đầu thời gian hồi chiêu
+        while (currentUltimateCooldownTime > 0f)
+        {
+            ultimateCooldownText.text = "CD:" + Mathf.Ceil(currentUltimateCooldownTime).ToString() + "s";
+            currentUltimateCooldownTime -= Time.deltaTime;
+            yield return null;
+        }
+        ultimateCooldownText.text = "Ok!";
+        canUseUltimate = true;
+    }
+
+    private void UpdateUltimateCooldown()
+    {
+        // Cập nhật thời gian hồi chiêu của Ultimate
+    }
+
     private IEnumerator ResetVirtualCamera()
     {
-        yield return new WaitForSeconds(7f); // Đợi 0.2 giây
-                                               // Trở lại trạng thái ban đầu của virtual camera
+        yield return new WaitForSeconds(7f); // Đợi 7 giây
+        // Trở lại trạng thái ban đầu của virtual camera
         ultimateTrigger.enabled = false;
         virtualCamera.m_Lens.OrthographicSize = 2.93f; // Khôi phục zoom mặc định
         isUltimating = false;
         isCameraZoomed = false;
         currentSpeed += 4f;
     }
+
     private IEnumerator ResetVirtualCamera2()
     {
         yield return new WaitForSeconds(1.5f); // Đợi 0.2 giây
@@ -303,7 +380,7 @@ public class PlayerController : MonoBehaviour
     public void SkillFireBall()
     {
         // Kiểm tra khi người chơi nhấn phím kích hoạt Skill 1
-        if(playerStatus.currentStamina >= 30)
+        if (playerStatus.currentStamina >= 30 && canUseFireBall)
         {
             isFireing = true;
             if (Input.GetKeyDown(KeyCode.C))
@@ -321,13 +398,34 @@ public class PlayerController : MonoBehaviour
 
                 // Hủy bỏ quả cầu lửa sau 2 giây
                 Destroy(fireball, 1f);
+
+                // Bắt đầu thời gian hồi chiêu
+                StartCoroutine(FireBallCooldown());
             }
         }
         else
         {
             isFireing = false;
         }
-        
+    }
+
+    private IEnumerator FireBallCooldown()
+    {
+        canUseFireBall = false;
+        currentFireballCooldownTime = fireballCooldown; // Bắt đầu thời gian hồi chiêu
+        while (currentFireballCooldownTime > 0f)
+        {
+            fireballCooldownText.text = "CD:" + Mathf.Ceil(currentFireballCooldownTime).ToString() + "s";
+            currentFireballCooldownTime -= Time.deltaTime;
+            yield return null;
+        }
+        fireballCooldownText.text = "Ok!";
+        canUseFireBall = true;
+    }
+
+    private void UpdateFireballCooldown()
+    {
+        // Cập nhật thời gian hồi chiêu của FireBall
     }
     public void Block()
     {

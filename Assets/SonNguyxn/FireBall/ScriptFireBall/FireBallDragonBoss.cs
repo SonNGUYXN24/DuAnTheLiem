@@ -10,6 +10,11 @@ public class FireBallDragonBoss : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+    }
+    private void Update()
+    {
+        StartCoroutine(DestroyAfterTime(8f)); // Bắt đầu đếm ngược 8 giây
     }
 
     public void Initialize(Transform playerTransform)
@@ -33,10 +38,18 @@ public class FireBallDragonBoss : MonoBehaviour
     {
         fireBallTrigger.enabled = true;
 
-        // Chờ 2 giây
+        // Chờ 0.5 giây
         yield return new WaitForSeconds(0.5f);
 
         // Hủy đối tượng FireBall
+        Destroy(gameObject);
+    }
+
+    private IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        // Hủy đối tượng FireBall sau 8 giây nếu chưa chạm vào Player
         Destroy(gameObject);
     }
 }
