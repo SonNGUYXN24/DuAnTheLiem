@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -103,6 +105,7 @@ ScriptedImporter:
     pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 0
@@ -124,6 +127,7 @@ ScriptedImporter:
     pivot: {x: 0.6354166, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 131
@@ -144,6 +148,7 @@ ScriptedImporter:
     pivot: {x: 0.6354166, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 187
@@ -164,6 +169,7 @@ ScriptedImporter:
     pivot: {x: 0.65, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 73
@@ -184,6 +190,7 @@ ScriptedImporter:
     pivot: {x: 0.7131148, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -204,6 +211,7 @@ ScriptedImporter:
     pivot: {x: 0.7131148, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 167
@@ -224,6 +232,7 @@ ScriptedImporter:
     pivot: {x: 0.7416667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 142
@@ -244,6 +253,7 @@ ScriptedImporter:
     pivot: {x: 0.7416667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -264,6 +274,7 @@ ScriptedImporter:
     pivot: {x: 0.7016129, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 72
@@ -284,6 +295,7 @@ ScriptedImporter:
     pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -304,6 +316,7 @@ ScriptedImporter:
     pivot: {x: 0.4112903, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 97
@@ -324,6 +337,7 @@ ScriptedImporter:
     pivot: {x: 0.5125, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 210
@@ -348,88 +362,99 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Attack_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 14
         y: 0
         width: 48
         height: 35
       spriteId: b32d418dd944e454ab165043c81c551d
-    - name: Attack_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 14
         y: 0
         width: 48
         height: 35
       spriteId: 36bc8f440c4c23b4f83fc445a3bb6302
-    - name: Attack_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 12
         y: 0
         width: 50
         height: 35
       spriteId: df6f290f306e77446bac73c422026522
-    - name: Attack_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 0
         width: 61
         height: 35
       spriteId: b137af90e53e05547882e5b56ffed477
-    - name: Attack_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 0
         width: 61
         height: 37
       spriteId: acffef5d09c00dc429fe11845450ca57
-    - name: Attack_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 60
         height: 42
       spriteId: 631fac23411085a42ae491eb2d03ce6e
-    - name: Attack_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 60
         height: 55
       spriteId: 31263f1d789eec747a61220280e5fee0
-    - name: Attack_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 0
         width: 62
         height: 44
       spriteId: feb056566c1e6514a9d652c1f7b48fe4
-    - name: Attack_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 0
         width: 85
         height: 43
       spriteId: aa76137f6bae6024da7257a9da78469a
-    - name: Attack_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 19
         y: 0
         width: 62
         height: 38
       spriteId: ba704eb5c8254b74c91c70248a26deab
-    - name: Attack_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 24
         y: 0
@@ -439,6 +464,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 89, y: 55}

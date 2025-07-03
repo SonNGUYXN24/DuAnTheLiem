@@ -20,7 +20,7 @@ public class FireBallDragonBoss : MonoBehaviour
     public void Initialize(Transform playerTransform)
     {
         Vector2 direction = (playerTransform.position - transform.position).normalized;
-        rb.velocity = direction * 15f; // Tốc độ của FireBall
+        rb.linearVelocity = direction * 15f; // Tốc độ của FireBall
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +28,7 @@ public class FireBallDragonBoss : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Dừng FireBall
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             // Kích hoạt trigger
             StartCoroutine(ActivateTrigger());
         }

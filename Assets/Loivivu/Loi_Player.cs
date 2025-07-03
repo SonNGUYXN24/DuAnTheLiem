@@ -64,7 +64,7 @@ public class Loi_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //nhay
-            _rigidbody2D.velocity = Vector2.up * _jumpVelocity;
+            _rigidbody2D.linearVelocity = Vector2.up * _jumpVelocity;
         }
     }
 }

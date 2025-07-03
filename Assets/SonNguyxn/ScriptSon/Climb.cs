@@ -78,16 +78,16 @@ public class Climb : MonoBehaviour
             {
                 climbInput = -1f; // Leo xuống
             }
-            rb.velocity = new Vector2(rb.velocity.x, climbInput * climbSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, climbInput * climbSpeed);
         }
         else if (nearLadder)
         {
             // Nếu đang gần cầu thang nhưng không nhấn phím leo, giữ nguyên vị trí y
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         }
         else
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y);
         }
     }
 }

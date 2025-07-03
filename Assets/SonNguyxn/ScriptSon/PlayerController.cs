@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             GameObject darkBall = Instantiate(darkBallPrefab, transform.position, Quaternion.identity);
             Rigidbody2D darkBallRb = darkBall.GetComponent<Rigidbody2D>();
             // Đặt hướng di chuyển của quả cầu DarkBall theo hướng của người chơi
-            darkBallRb.velocity = new Vector2(transform.localScale.x * darkBallSpeed, 0f);
+            darkBallRb.linearVelocity = new Vector2(transform.localScale.x * darkBallSpeed, 0f);
             audioSource.PlayOneShot(skill1Sound); // Sử dụng âm thanh của skill1Sound hoặc thay bằng âm thanh khác nếu có
                                                   // Flip quả cầu DarkBall theo hướng của người chơi
             SpriteRenderer darkBallSprite = darkBall.GetComponent<SpriteRenderer>();
@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         xInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(xInput * currentSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(xInput * currentSpeed, rb.linearVelocity.y);
 
         if (xInput != 0)
         {
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             float verticalInput = Input.GetAxis("Vertical");
             // Điều khiển người chơi lên hoặc xuống
-            rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, verticalInput * climbSpeed);
         }
     }
     public void SkillExplosion()
@@ -390,7 +390,7 @@ public class PlayerController : MonoBehaviour
                 GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
                 Rigidbody2D fireballRb = fireball.GetComponent<Rigidbody2D>();
                 // Đặt hướng di chuyển của quả cầu lửa theo hướng của người chơi
-                fireballRb.velocity = new Vector2(transform.localScale.x * fireballSpeed, 0f);
+                fireballRb.linearVelocity = new Vector2(transform.localScale.x * fireballSpeed, 0f);
                 audioSource.PlayOneShot(skill1Sound);
                 // Flip quả cầu lửa theo hướng của người chơi
                 SpriteRenderer fireballSprite = fireball.GetComponent<SpriteRenderer>();
@@ -457,14 +457,14 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded && jumpCount > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
                 audioSource.PlayOneShot(jumpSound);
                 anim.SetBool("IsJumping", true);
                 jumpCount--;
             }
             else if (!isGrounded && jumpCount > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
                 anim.SetBool("IsJumping", false); // Kết thúc animation nhảy
                 anim.SetBool("IsRolling", true); // Bắt đầu animation lăn
                 jumpCount--;

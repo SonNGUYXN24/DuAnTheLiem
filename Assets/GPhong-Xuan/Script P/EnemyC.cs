@@ -90,7 +90,7 @@ public class EnemyC : MonoBehaviour
             if (distanceToPlayer > stopRange)
             {
                 Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
-                rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
+                rb.linearVelocity = moveDirection * 3f;// Tốc độ di chuyển
 
                 animator.SetBool("isMoving", true);
 
@@ -177,7 +177,7 @@ public class EnemyC : MonoBehaviour
         if (collision.gameObject.CompareTag("DarkBall"))
         {
             currentHPEnemy -= 200; // Số lượng sát thương của DarkBall
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             UpdateHP();
             if (currentHPEnemy <= 0 && !isDead)
             {

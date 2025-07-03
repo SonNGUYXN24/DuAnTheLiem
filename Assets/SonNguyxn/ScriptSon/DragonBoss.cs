@@ -127,7 +127,7 @@ public class DragonBoss : MonoBehaviour
             if (distanceToPlayer > stopRange)
             {
                 Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
-                rb.velocity = moveDirection * 3f; // Tốc độ di chuyển
+                rb.linearVelocity = moveDirection * 3f; // Tốc độ di chuyển
 
                 animator.SetBool("IsRunning", true);
 
@@ -166,7 +166,7 @@ public class DragonBoss : MonoBehaviour
 
                 // Xác định hướng bắn của FireBall
                 Vector2 direction = (Player.position - firePoint.position).normalized;
-                fireBall.GetComponent<Rigidbody2D>().velocity = direction * fireBallSpeed;
+                fireBall.GetComponent<Rigidbody2D>().linearVelocity = direction * fireBallSpeed;
 
                 // Xoay hướng của FireBall theo hướng của DragonBoss
                 if (direction.x < 0)
@@ -197,7 +197,7 @@ public class DragonBoss : MonoBehaviour
 
         // Tạm dừng hoạt động của Player và DragonBoss
         Player.GetComponent<PlayerController>().enabled = false;
-        rb.velocity = Vector2.zero; // Đóng băng DragonBoss
+        rb.linearVelocity = Vector2.zero; // Đóng băng DragonBoss
         animator.enabled = false; // Tắt animator của DragonBoss
 
         // Phóng to camera và di chuyển vị trí

@@ -21,7 +21,7 @@ public class DarkBall : MonoBehaviour
         if (other.CompareTag("Goblin"))
         {
             // Dừng DarkBall
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             darkBallEffect.Play();
             darkBallSound.PlayOneShot(darkBallSounds);
 

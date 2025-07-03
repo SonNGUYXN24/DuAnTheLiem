@@ -116,7 +116,7 @@ public class Boss : MonoBehaviour
             {
 
                 Vector2 moveDirection = new Vector2(Player.position.x - transform.position.x, 0f).normalized;
-                rb.velocity = moveDirection * 3f;// Tốc độ di chuyển
+                rb.linearVelocity = moveDirection * 3f;// Tốc độ di chuyển
 
                 animator.SetBool("ismove", true);
 
